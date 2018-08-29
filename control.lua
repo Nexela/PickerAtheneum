@@ -1,3 +1,11 @@
-require('scripts/adjustment-pad').register_events()
+local interface = require('__stdlib__/stdlib/scripts/interface')
+require('utils/adjustment-pad').register_events()
 
-remote.add_interface(script.mod_name, require('__stdlib__/stdlib/scripts/interface'))
+if require('__PickerAtheneum__/config').DEBUG then
+    log(script.mod_name .. ' Developer Debug mode enabled')
+    require('__stdlib__/stdlib/core').create_stdlib_globals()
+    require('__stdlib__/stdlib/scripts/quickstart')
+end
+
+commands.add_command('Picker.write-all', {'picker.write-all'}, interface.dump_all)
+remote.add_interface(script.mod_name, interface)
