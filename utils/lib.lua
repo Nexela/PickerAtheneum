@@ -173,7 +173,7 @@ function lib.get_planner(player, planner, label)
                                 return player.cursor_stack
                             end
                         end
-                    elseif global.planners[planner] and game.item_prototypes[planner] then
+                    elseif game.item_prototypes[planner] then
                         if player.cursor_stack.swap_stack(slot) then
                             return player.cursor_stack
                         end
@@ -192,5 +192,55 @@ function lib.get_planner(player, planner, label)
         return planner and game.item_prototypes[planner] and player.cursor_stack.set_stack(planner) and player.cursor_stack
     end
 end
+
+local function _matches_options(slot, options)
+    local matches = false
+    if options.is_blueprint_setup then
+        matches = slot.is_blueprint and slot.is_blueprint_setup()
+    end
+    if options.is_blueprint_not_setup then
+        matches = slot.is_blueprint and not slot.is_blueprint_setup()
+    end
+    if options.label then
+        matches = slot.is_item_with_label and slot.label and slot.label:find(options.label)
+    end
+    if options.is_deconstruction_setup then
+        matches = slot.is_deconstruction_item and (#slot.entity_filters > 0 or #slot.tile_filters > 0)
+    end
+    if options.is_deconstruction_not_setup then
+        matches = slot.is_deconstruction_item and (#slot.entity_filters == 0 and #slot.tile_filters == 0)
+    end
+    return matches
+end
+
+function lib.get_inventories(player)
+    return {player.get_main_inventory(), player.get_quickbar()}
+end
+
+-- Return the "inventory slot" where the item is found
+function lib.find_item_in_inventories(item_name, inventories, options)
+    options = options or {}
+    local found
+    for _, inventory in ipairs(inventories) do
+        for i = 1, #inventory, 1 do
+            local slot = inventory[i]
+            if slot.valid_for_read and slot.name == item_name and (not options or _matches_options(slot, options)) then
+                found = slot
+                break
+            end
+        end
+        if found then
+            return found
+        end
+    end
+end
+
+function lib.set_or_swap_item(player, slot, item, set)
+    if type(item) == "string" then
+        return (set and slot.set_stack(item)) or (player.clean_cursor() and slot.set_stack(item))
+    end
+    return item and ((set and slot.set_stack(item)) or (player.clean_cursor() and slot.swap_stack(item) or slot.set_stack(item)))
+end
+
 
 return lib
