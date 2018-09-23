@@ -144,8 +144,7 @@ function lib.satisfy_requests(player, proxy)
             if removed > 0 then
                 entity.insert({name = name, count = removed})
                 local txt = {'', -removed, ' ', {'item-name.' .. name}, ' (' .. player.get_item_count(name) .. ')'}
-                entity.surface.create_entity {
-                    name = 'picker-flying-text',
+                player.create_local_flying_text {
                     text = txt,
                     position = pos(),
                     color = defines.color.white
