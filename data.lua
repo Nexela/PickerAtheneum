@@ -12,6 +12,11 @@ Data {
 }
 
 Data {
+        type = "highlight-box",
+        name = "picker-highlight-box"
+}
+
+Data {
     name = 'picker-buffer-corpse-instant',
     type = 'character-corpse',
     picture = Data.Sprites.empty_pictures(),
