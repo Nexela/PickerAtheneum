@@ -12,7 +12,7 @@ if require('__PickerAtheneum__/config').DEBUG then
     log(script.mod_name .. ' Developer Debug mode enabled')
     commands.add_command('Picker.reload', 'Reset', reload)
     require('__stdlib__/stdlib/core').create_stdlib_globals()
-    require('__stdlib__/stdlib/scripts/quickstart')
+    require('__stdlib__/stdlib/scripts/quickstart').register_events()
     Event.register('picker-reload-mods', reload)
 end
 
