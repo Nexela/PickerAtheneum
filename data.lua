@@ -2,6 +2,7 @@ local Data = require('__stdlib__/stdlib/data/data')
 
 require('prototypes/adjustment-pad')
 require('prototypes/styles')
+require('prototypes/pointer-beam')
 
 Data {
     type = 'flying-text',
