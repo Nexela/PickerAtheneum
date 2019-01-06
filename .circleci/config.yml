@@ -5,7 +5,7 @@ jobs:
       only:
         - "master"
     docker:
-      - image: nexela/factorio-lua-env:0.0.1
+      - image: nexela/factorio-lua-env
     steps:
       - checkout
       - run: curl -s -o .luacheckrc https://raw.githubusercontent.com/Nexela/Factorio-luacheckrc/0.17/.luacheckrc

@@ -28,7 +28,9 @@ package: $(PNG_FILES) $(LUA_FILES) nodebug
 
 $(OUTPUT_DIR)/%.png: %.png
 	@mkdir -p $(@D)
-	@pngquant --quiet --strip $< -o $(OUTPUT_DIR)/$< || true
+	@cp -r $< $(OUTPUT_DIR)/$<
+#@pngquant --quiet --strip $< -o $(OUTPUT_DIR)/$< || true
+	@pngquant --skip-if-larger --quiet --strip --ext .png --force $(OUTPUT_DIR)/$< || true
 
 $(OUTPUT_DIR)/%.lua: %.lua
 	@mkdir -p $(@D)
