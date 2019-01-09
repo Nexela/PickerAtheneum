@@ -66,7 +66,7 @@ function lib.find_resources(entity)
 end
 
 function lib.get_item_stack(e, name, give_free)
-    local stack = (e.get_main_inventory().find_item_stack(name)) or (e.get_quickbar().find_item_stack(name))
+    local stack = e.get_main_inventory().find_item_stack(name)
     if stack then
         return stack
     end
@@ -159,28 +159,27 @@ end
 
 function lib.get_planner(player, planner, label)
     local found
-    for _, inventory in pairs(Inventory.get_main_inventories(player)) do
-        for i = 1, #inventory do
-            local slot = inventory[i]
-            if slot.valid_for_read then
-                if slot.name == planner then
-                    if planner.is_blueprint then
-                        if not slot.is_blueprint_setup() then
-                            found = slot
-                        elseif (label and slot.is_blueprint_setup() and slot.label and slot.label:find(label)) then
-                            if player.cursor_stack.swap_stack(slot) then
-                                return player.cursor_stack
-                            end
-                        end
-                    elseif game.item_prototypes[planner] then
+    local inventory = player.get_main_inventory()
+    for i = 1, #inventory do
+        local slot = inventory[i]
+        if slot.valid_for_read then
+            if slot.name == planner then
+                if planner.is_blueprint then
+                    if not slot.is_blueprint_setup() then
+                        found = slot
+                    elseif (label and slot.is_blueprint_setup() and slot.label and slot.label:find(label)) then
                         if player.cursor_stack.swap_stack(slot) then
                             return player.cursor_stack
                         end
                     end
-                elseif planner == 'repair-tool' and slot.type == 'repair-tool' then
+                elseif game.item_prototypes[planner] then
                     if player.cursor_stack.swap_stack(slot) then
                         return player.cursor_stack
                     end
+                end
+            elseif planner == 'repair-tool' and slot.type == 'repair-tool' then
+                if player.cursor_stack.swap_stack(slot) then
+                    return player.cursor_stack
                 end
             end
         end
@@ -212,26 +211,22 @@ local function _matches_options(slot, options)
     return matches
 end
 
-function lib.get_inventories(player)
-    return {player.get_main_inventory(), player.get_quickbar()}
-end
-
 -- Return the "inventory slot" where the item is found
-function lib.find_item_in_inventories(item_name, inventories, options)
+function lib.find_item_in_inventory(item_name, inventory, options)
     options = options or {}
     local found
-    for _, inventory in ipairs(inventories) do
-        for i = 1, #inventory, 1 do
-            local slot = inventory[i]
-            if slot.valid_for_read and slot.name == item_name and (not options or _matches_options(slot, options)) then
-                found = slot
-                break
-            end
-        end
-        if found then
-            return found
+
+    for i = 1, #inventory, 1 do
+        local slot = inventory[i]
+        if slot.valid_for_read and slot.name == item_name and (not options or _matches_options(slot, options)) then
+            found = slot
+            break
         end
     end
+    if found then
+        return found
+    end
+
 end
 
 function lib.set_or_swap_item(player, slot, item, set)
