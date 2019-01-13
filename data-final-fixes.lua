@@ -5,7 +5,7 @@ if require('__PickerAtheneum__/config').DEBUG then
         {
             type = 'custom-input',
             name = 'picker-reload-mods',
-            key_sequence = 'CONTROL + SHIFT + R',
+            key_sequence = 'PAUSE',
             localised_name = 'Reload Mods'
         }
     }

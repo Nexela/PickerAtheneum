@@ -13,8 +13,8 @@ Data {
 }
 
 Data {
-        type = "highlight-box",
-        name = "picker-highlight-box"
+    type = 'highlight-box',
+    name = 'picker-highlight-box'
 }
 
 Data {
@@ -40,8 +40,8 @@ Data('blueprint', 'blueprint'):copy('picker-blueprint-tool'):set_fields {
     order = 'c[automated-construction]-a[blueprint]-no-picker'
 }
 
-Data('deconstruction-planner', 'deconstruction-item'):copy('picker-deconstruction-tool'):set_fields{
-flags = {'hidden', 'only-in-cursor'},
-show_in_library = false,
-order = 'c[automated-construction]-a[construction]-no-picker',
+Data('deconstruction-planner', 'deconstruction-item'):copy('picker-deconstruction-tool'):set_fields {
+    flags = {'hidden', 'only-in-cursor'},
+    show_in_library = false,
+    order = 'c[automated-construction]-a[construction]-no-picker'
 }
