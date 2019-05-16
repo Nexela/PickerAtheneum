@@ -56,7 +56,6 @@ zip:
 	@cd $(BUILD_DIR) && zip -rq $(PACKAGE_FILE) $(PACKAGE_FULL_NAME) && mkdir artifacts && cp -r $(PACKAGE_FILE) artifacts/$(PACKAGE_FILE)
 	@echo $(PACKAGE_FULL_NAME) ready
 
-tag:
-	git commit --all --allow-empty -m "Preparing Release v$(PACKAGE_VERSION)"
-	git tag -f v$(PACKAGE_VERSION)
-	git push --tags
+release:
+	@echo Preparing Release
+	@git checkout release && git merge master && git push
