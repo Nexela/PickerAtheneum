@@ -14,6 +14,7 @@ if require('__PickerAtheneum__/config').DEBUG then
     require('__stdlib__/stdlib/core').create_stdlib_globals()
     require('__stdlib__/stdlib/scripts/quickstart').register_events()
     Event.register('picker-reload-mods', reload)
+    Event.register('picker-dump-data', interface.dump_all)
 end
 
 commands.add_command('Picker.write-all', {'picker.write-all'}, interface.dump_all)
