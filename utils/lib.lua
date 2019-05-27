@@ -163,7 +163,7 @@ function lib.get_planner(player, planner, label)
         local slot = inventory[i]
         if slot.valid_for_read then
             if slot.name == planner then
-                if planner.is_blueprint then
+                if slot.is_blueprint then
                     if not slot.is_blueprint_setup() then
                         found = slot
                     elseif (label and slot.is_blueprint_setup() and slot.label and slot.label:find(label)) then
