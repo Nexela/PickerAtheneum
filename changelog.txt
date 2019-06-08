@@ -3,6 +3,8 @@ Version: 1.0.4
 Date: ??????
   Features:
     - Added some Picker.write commands
+  Bugfixes:
+    - Fix prototype loading error with Factorio .17.46
 ---------------------------------------------------------------------------------------------------
 Version: 1.0.3
 Date: ??????
