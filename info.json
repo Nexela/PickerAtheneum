@@ -1,11 +1,11 @@
 {
     "name": "PickerAtheneum",
-    "version": "1.0.4",
+    "version": "1.0.5",
     "factorio_version": "0.17",
     "title": "Picker Atheneum",
     "author": "Nexela",
     "contact": "nexela@gmail.com",
-    "dependencies": ["base >= 0.17.47", "stdlib >= 1.1.0"],
+    "dependencies": ["base >= 0.17.47", "stdlib >= 1.1.1", "(?) boblogistics"],
     "homepage": "",
     "description": "Library Files for the Picker family of mods."
   }
