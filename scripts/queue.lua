@@ -18,6 +18,11 @@ end
 local function queue_initialize()
     Event.register(defines.events.on_tick, queue_tick)
 end
+--[[
+local token = remote.call("PickerAtheneum","queue_add",{mod_name = "Your mod name"})
+global.queue_token = token
+Event.register(token, function_to_call)
+]]--
 
 Interface['queue_add'] = function(data)
     if not global.running then
@@ -34,7 +39,11 @@ Interface['queue_add'] = function(data)
     global.tokens_leased[data.mod_name] = new_token
     return new_token
 end
-
+--[[
+remote.call("PickerAtheneum","queue_remove",{token = global.queue_token})
+Event.remove(global.queue_token,function_to_remove)
+global.queue_token = nil
+]]
 Interface['queue_remove'] = function(data)
     local r_token = data.token
     for index,token in global.queue do
@@ -46,12 +55,23 @@ Interface['queue_remove'] = function(data)
         end
     end
     global.tokens_leased[r_token] = nil
-    if not next(global.queue) then
+    if global.queue and not next(global.queue) then
         global.queue = {}
         Event.remove(defines.events.on_tick, queue_tick)
     end
 end
 
+--[[
+Event.on_load(
+    function()
+        if global.queue_token then
+                local token = remote.call("PickerAtheneum","queue_reestablish",{mod_name = "Mod name"})
+                global.queue_token = token
+                Event.register(token, function_to_call)
+        end
+    end
+)
+]]--
 Interface['queue_reestablish'] = function(data)
     return global.tokens_leased[data.mod_name]
 end
