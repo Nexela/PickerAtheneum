@@ -1,21 +1,20 @@
 local Event = require('__stdlib__/stdlib/event/event')
 local Interface = require('__stdlib__/stdlib/scripts/interface')
 
-global.queue = {}
-global.tokens_leased = {}
-global.running = false
-global.current_index = 1
-
 local function queue_tick()
     local i = global.current_index
     i = i + 1
     if i > #global.queue then
         i = 1
     end
-    Event.dispatch(global.queue[i].token, nil)
+    Event.raise_event(global.queue[i].token, {stuff = true})
 end
 
 local function queue_initialize()
+    global.queue = {}
+    global.tokens_leased = {}
+    global.running = false
+    global.current_index = 1
     Event.register(defines.events.on_tick, queue_tick)
 end
 --[[
@@ -46,7 +45,7 @@ global.queue_token = nil
 ]]
 Interface['queue_remove'] = function(data)
     local r_token = data.token
-    for index,token in global.queue do
+    for index,token in pairs(global.queue) do
         if token == r_token then
             if index > global.current_index then
                 global.current_index = global.current_index - 1
