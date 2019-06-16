@@ -1,3 +1,54 @@
+-------------------------------------------------------------------------------
+--[[on-tick queue]]--
+-------------------------------------------------------------------------------
+-- Concept designed and code written by TheStaplergun (staplergun on mod portal)
+-- STDLib and code reviews provided by Nexela
+--[[
+
+To add your mod to the queue copy the following code somewhere in your mod at a point where it's been determined that the work needs to be distributed:
+--STDLIB-----------------------------------------------------------------------
+local token = remote.call("PickerAtheneum","queue_add",{mod_name = "YourModName_QueuedTaskAbbreviation"}) --The additional queued task abbreviation allows you to queue multiple things within the same mod
+global.queue_token = token
+Event.register(token, function_to_call_each_turn)
+--NO STD LIB-------------------------------------------------------------------
+local token = remote.call("PickerAtheneum","queue_add",{mod_name = "YourModName_QueuedTaskAbbreviation"}) --The additional queued task abbreviation allows you to queue multiple things within the same mod
+global.queue_token = token
+script.on_event(token, function_to_call_each_turn)
+
+
+To remove your mod from the queue and de-register the listener, add this code somewhere in your mod once the work is done:
+--STDLIB-----------------------------------------------------------------------
+remote.call("PickerAtheneum","queue_remove",{token = global.queue_token})
+Event.remove(global.queue_token,function_to_call_each_turn)
+global.queue_token = nil
+--NO STD LIB-------------------------------------------------------------------
+remote.call("PickerAtheneum","queue_remove",{token = global.queue_token})
+script.on_event(global.queue_token,nil)
+global.queue_token = nil
+
+To handle registration properly on_load use:
+--STDLIB-----------------------------------------------------------------------
+Event.on_load(
+    function()
+        if global.queue_token then
+                local token = remote.call("PickerAtheneum","queue_reestablish",{mod_name = "YourModName_QueuedTaskAbbreviation"}) --The additional queued task abbreviation allows you to queue multiple things within the same mod
+                global.queue_token = token
+                Event.register(token, function_to_call_each_turn)
+        end
+    end
+)
+--NO STD LIB-------------------------------------------------------------------
+script.on_load(
+    function()
+        if global.queue_token then
+                local token = remote.call("PickerAtheneum","queue_reestablish",{mod_name = "YourModName_QueuedTaskAbbreviation"}) --The additional queued task abbreviation allows you to queue multiple things within the same mod
+                global.queue_token = token
+                script.on_event(token, function_to_call_each_turn)
+        end
+    end
+)
+]]
+
 local Event = require('__stdlib__/stdlib/event/event')
 local Interface = require('__stdlib__/stdlib/scripts/interface')
 
@@ -13,19 +64,14 @@ end
 local function queue_initialize()
     global.queue = {}
     global.tokens_leased = {}
-    global.running = false
+    global.running = true
     global.current_index = 1
     Event.register(defines.events.on_tick, queue_tick)
 end
---[[
-local token = remote.call("PickerAtheneum","queue_add",{mod_name = "Your mod name"})
-global.queue_token = token
-Event.register(token, function_to_call)
-]]--
+
 
 Interface['queue_add'] = function(data)
     if not global.running then
-        global.running = true
         queue_initialize()
     end
     local new_token = Event.generate_event_name(data.mod_name .. '_queue_event')
@@ -38,11 +84,7 @@ Interface['queue_add'] = function(data)
     global.tokens_leased[data.mod_name] = new_token
     return new_token
 end
---[[
-remote.call("PickerAtheneum","queue_remove",{token = global.queue_token})
-Event.remove(global.queue_token,function_to_remove)
-global.queue_token = nil
-]]
+
 Interface['queue_remove'] = function(data)
     local r_token = data.token
     for index,token in pairs(global.queue) do
@@ -56,21 +98,12 @@ Interface['queue_remove'] = function(data)
     global.tokens_leased[r_token] = nil
     if global.queue and not next(global.queue) then
         global.queue = {}
+        global.running = false
         Event.remove(defines.events.on_tick, queue_tick)
     end
 end
 
---[[
-Event.on_load(
-    function()
-        if global.queue_token then
-                local token = remote.call("PickerAtheneum","queue_reestablish",{mod_name = "Mod name"})
-                global.queue_token = token
-                Event.register(token, function_to_call)
-        end
-    end
-)
-]]--
+
 Interface['queue_reestablish'] = function(data)
     return global.tokens_leased[data.mod_name]
 end
@@ -78,6 +111,7 @@ end
 
 Event.on_load(
     function()
+        global.running = global.running or false
         if global.running then
             queue_initialize()
             for _,queue_data in pairs(global.queue) do
