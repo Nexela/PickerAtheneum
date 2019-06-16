@@ -1,7 +1,7 @@
 local Game = require('__stdlib__/stdlib/game')
 local interface = require('__stdlib__/stdlib/scripts/interface')
 require('utils/adjustment-pad').register_events()
-
+require('scripts/queue')
 if require('__PickerAtheneum__/config').DEBUG then
     --require('__stdlib__/stdlib/scripts/console')
     local Event = require('__stdlib__/stdlib/event/event')
