@@ -62,6 +62,7 @@ end
 Interface['queue_remove'] = function(interface, func_name)
     if global.queue then
         global.queue[interface .. '_' .. func_name] = nil
+        global.current_index = nil
         if not next(global.queue) then -- Check if queue is empty
             global.queue = nil
             Event.remove(defines.events.on_tick, queue_tick) -- Unregister event handler if empty
