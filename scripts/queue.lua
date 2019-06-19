@@ -1,5 +1,5 @@
 -------------------------------------------------------------------------------
---[[on-tick queue]]--
+--[[on-tick queue]] --
 -------------------------------------------------------------------------------
 -- Concept designed and code written by TheStaplergun (staplergun on mod portal)
 -- STDLib and code reviews provided by Nexela
@@ -23,66 +23,55 @@ remote.call("PickerAtheneum","queue_remove",{token = global.queue_token})
 remote.call("PickerAtheneum","queue_remove",{token = global.queue_token})
 
 ]]
-
 local Event = require('__stdlib__/stdlib/event/event')
 local Interface = require('__stdlib__/stdlib/scripts/interface')
 
 --Cycle through the array stored in global one time per tick and perform remote.call with the mod name and function name provided during "queue_add"
 local function queue_tick()
-    local i = global.current_index
-    local q = global.queue
-    remote.call(q[i].name,q[i].f_name)
-    i = i + 1
-    if i > #global.queue then
-        i = 1
+    local index, queue
+    index, queue = next(global.queue, global.current_index)
+    if not index then
+        index, queue = next(global.queue, global.current_index)
     end
-    global.current_index = i
-end
-
---Initialize tables, tracked index, and register on_tick handler
-local function queue_initialize()
-    global.queue = {}
-    global.running = true
-    global.current_index = 1
-    Event.register(defines.events.on_tick, queue_tick)
+    if index then
+        if remote.interfaces[queue.interface] and remote.interfaces[queue.interface][queue.func_name] then
+            remote.call(queue.interface, queue.func_name)
+        else
+            Interface.queue_remove(queue.interface, queue.func_name)
+        end
+        global.current_index = index
+    end
 end
 
 --Add a mod to the queue. Initializes the queue system if it isn't running. A mod calls remote.call and provides a table with name and f_name parameters, and it is stored in a global array.
 --@tparam name The name of the calling mod
 --@tparam f_name The name of the function assigned to the interface in the remote mod
-Interface['queue_add'] = function(data)
-    if not global.running then
-        queue_initialize()
+Interface['queue_add'] = function(interface, func_name)
+    if not global.queue then
+        global.queue = {}
+        Event.register(defines.events.on_tick, queue_tick)
     end
-    local q = global.queue
-    q[#q + 1] = {
-        name = data.name,
-        f_name = data.f_name
-    }
+    global.queue[interface .. '_' .. func_name] = {interface = interface, func_name = func_name}
     return true
 end
 
 --Remove a mod from the queue. Searches for the relevant mod by the provided name from the remote.call and removes the entry from the queue. Also makes sure index stays within bounds. Also unregisters the on_tick handler if the queue is empty.
 --@tparam name The name of the calling mod
-Interface['queue_remove'] = function(data)
-    for i,q_pos in pairs(global.queue) do
-        if data.name == q_pos.name then
-            if (i > global.current_index) or (i > #global.queue) then -- Validate queue current index is within bounds and accounts for removed step.
-                global.current_index = global.current_index - 1
-            end
-            table.remove(global.queue, i) -- Pop out mod requesting removal
+Interface['queue_remove'] = function(interface, func_name)
+    if global.queue then
+        global.queue[interface .. '_' .. func_name] = nil
+        if not next(global.queue) then -- Check if queue is empty
+            global.queue = nil
+            Event.remove(defines.events.on_tick, queue_tick) -- Unregister event handler if empty
         end
+        return true
     end
-    if not next(global.queue) then -- Check if queue is empty
-        global.queue = {}
-        global.running = false
-        Event.remove(defines.events.on_tick, queue_tick) -- Unregister event handler if empty
-    end
+    return false
 end
 
 local function on_load()
-    if global.running then
-        Event.register(defines.events.on_tick,queue_tick)
+    if global.queue then
+        Event.register(defines.events.on_tick, queue_tick)
     end
 end
 Event.on_load(on_load)
