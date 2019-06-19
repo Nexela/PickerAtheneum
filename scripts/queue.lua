@@ -28,18 +28,20 @@ local Interface = require('__stdlib__/stdlib/scripts/interface')
 
 --Cycle through the array stored in global one time per tick and perform remote.call with the mod name and function name provided during "queue_add"
 local function queue_tick()
-    local index, queue
-    index, queue = next(global.queue, global.current_index)
-    if not index then
+    if global.queue then
+        local index, queue
         index, queue = next(global.queue, global.current_index)
-    end
-    if index then
-        if remote.interfaces[queue.interface] and remote.interfaces[queue.interface][queue.func_name] then
-            remote.call(queue.interface, queue.func_name)
-        else
-            Interface.queue_remove(queue.interface, queue.func_name)
+        if not index then
+            index, queue = next(global.queue, nil)
         end
-        global.current_index = index
+        if index then
+            if remote.interfaces[queue.interface] and remote.interfaces[queue.interface][queue.func_name] then
+                remote.call(queue.interface, queue.func_name)
+            else
+                Interface.queue_remove(queue.interface, queue.func_name)
+            end
+            global.current_index = index
+        end
     end
 end
 
