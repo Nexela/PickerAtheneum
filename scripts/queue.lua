@@ -25,22 +25,16 @@ remote.call("PickerAtheneum","queue_remove",{token = global.queue_token})
 ]]
 local Event = require('__stdlib__/stdlib/event/event')
 local Interface = require('__stdlib__/stdlib/scripts/interface')
+local Queue = require('__stdlib__/stdlib/misc/queue')
 
 --Cycle through the array stored in global one time per tick and perform remote.call with the mod name and function name provided during "queue_add"
 local function queue_tick()
-    if global.queue then
-        local index, queue
-        index, queue = next(global.queue, global.current_index)
-        if not index then
-            index, queue = next(global.queue, nil)
-        end
-        if index then
-            if remote.interfaces[queue.interface] and remote.interfaces[queue.interface][queue.func_name] then
-                remote.call(queue.interface, queue.func_name)
-            else
-                Interface.queue_remove(queue.interface, queue.func_name)
-            end
-            global.current_index = index
+    local queue = global.queue:pop_and_push()
+    if queue then
+        if remote.interfaces[queue.interface] and remote.interfaces[queue.interface][queue.func_name] then
+            remote.call(queue.interface, queue.func_name)
+        else
+            Interface.queue_remove(queue.interface, queue.func_name)
         end
     end
 end
@@ -50,10 +44,10 @@ end
 --@tparam f_name The name of the function assigned to the interface in the remote mod
 Interface['queue_add'] = function(interface, func_name)
     if not global.queue then
-        global.queue = {}
+        global.queue = Queue()
         Event.register(defines.events.on_tick, queue_tick)
     end
-    global.queue[interface .. '_' .. func_name] = {interface = interface, func_name = func_name}
+    global.queue {interface = interface, func_name = func_name}
     return true
 end
 
@@ -61,9 +55,14 @@ end
 --@tparam name The name of the calling mod
 Interface['queue_remove'] = function(interface, func_name)
     if global.queue then
-        global.queue[interface .. '_' .. func_name] = nil
-        global.current_index = nil
-        if not next(global.queue) then -- Check if queue is empty
+        for k, v in global.queue:pairs() do
+            if v.interface == interface and v.func_name == func_name then
+                global[k] = nil
+                --rawset(global.queue.objects, k, nil)
+            end
+        end
+        global.queue:sort()
+        if #global.queue == 0 then -- Check if queue is empty
             global.queue = nil
             Event.remove(defines.events.on_tick, queue_tick) -- Unregister event handler if empty
         end
@@ -74,6 +73,7 @@ end
 
 local function on_load()
     if global.queue then
+        Queue.load(global.queue)
         Event.register(defines.events.on_tick, queue_tick)
     end
 end
