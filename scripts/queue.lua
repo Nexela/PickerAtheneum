@@ -57,8 +57,7 @@ Interface['queue_remove'] = function(interface, func_name)
     if global.queue then
         for k, v in global.queue:pairs() do
             if v.interface == interface and v.func_name == func_name then
-                global[k] = nil
-                --rawset(global.queue.objects, k, nil)
+                global.queue.objects[k] = nil
             end
         end
         global.queue:sort()
