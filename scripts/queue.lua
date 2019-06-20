@@ -27,6 +27,11 @@ local Event = require('__stdlib__/stdlib/event/event')
 local Interface = require('__stdlib__/stdlib/scripts/interface')
 local Queue = require('__stdlib__/stdlib/misc/queue')
 
+local options = {
+    protected_mode = false,
+    skip_valid = true
+}
+
 --Cycle through the array stored in global one time per tick and perform remote.call with the mod name and function name provided during "queue_add"
 local function queue_tick()
     local queue = global.queue:pop_and_push()
@@ -45,7 +50,7 @@ end
 Interface['queue_add'] = function(interface, func_name)
     if not global.queue then
         global.queue = Queue()
-        Event.register(defines.events.on_tick, queue_tick)
+        Event.register(defines.events.on_tick, queue_tick, nil, nil, options)
     end
     global.queue {interface = interface, func_name = func_name}
     return true
@@ -73,7 +78,7 @@ end
 local function on_load()
     if global.queue then
         Queue.load(global.queue)
-        Event.register(defines.events.on_tick, queue_tick)
+        Event.register(defines.events.on_tick, queue_tick, nil, nil, options)
     end
 end
 Event.on_load(on_load)
