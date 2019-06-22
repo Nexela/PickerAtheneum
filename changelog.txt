@@ -1,4 +1,11 @@
 ---------------------------------------------------------------------------------------------------
+Version: 1.1.0
+Date: ??????
+  Changes:
+    - Updated dependencies.
+  Features:
+    - Added Event Queue Dispatcher, and Remote Queue Dispatcher
+---------------------------------------------------------------------------------------------------
 Version: 1.0.5
 Date: ??????
   Changes:
