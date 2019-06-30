@@ -3,7 +3,7 @@ local Interface = require('__stdlib__/stdlib/scripts/interface')
 --local Queue = require('__stdlib__/stdlib/misc/queue')
 
 local tick_options = {
-    protected = true,
+    protected_mode = true,
     skip_valid = true
 }
 

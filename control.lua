@@ -24,8 +24,8 @@ if require('__PickerAtheneum__/config').DEBUG then
 end
 
 commands.add_command('Picker.write-all', {'picker.write-all'}, interface.dump_all)
-commands.add_command('Picker.mods-to-file', "Write mods to file", Game.write_mods)
-commands.add_command('Picker.surface-to-file', "Write surface info to file", Game.write_surfaces)
-commands.add_command('Picker.statistics', "Write statistics info to file", Game.write_statistics)
+commands.add_command('Picker.mods-to-file', 'Write mods to file', Game.write_mods)
+commands.add_command('Picker.surface-to-file', 'Write surface info to file', Game.write_surfaces)
+commands.add_command('Picker.statistics', 'Write statistics info to file', Game.write_statistics)
 
 remote.add_interface(script.mod_name, interface)
