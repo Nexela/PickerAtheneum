@@ -22,6 +22,25 @@ data:extend {
 
 data:extend {
     {
+        type = 'sprite',
+        name = 'adjustment_pad_button_plus',
+        filename = '__PickerAtheneum__/graphics/gui/frame-button-icons.png',
+        position = {0,0},
+        size = 32,
+        flags = {'icon'}
+    },
+    {
+        type = 'sprite',
+        name = 'adjustment_pad_button_minus',
+        filename = '__PickerAtheneum__/graphics/gui/frame-button-icons.png',
+        position = {32,0},
+        size = 32,
+        flags = {'icon'}
+    }
+}
+
+data:extend {
+    {
         type = 'font',
         name = 'adjustment_pad-button-font',
         from = 'default',
@@ -34,19 +53,16 @@ local style = data.raw['gui-style'].default
 style.adjustment_pad_frame_style = {
     type = 'frame_style',
     parent = 'frame',
-    maximal_height = 33,
-    minimal_height = 33,
-    top_padding = 0,
+    top_padding = 2,
     left_padding = 6,
     right_padding = 6,
-    bottom_padding = 0
+    bottom_padding = 2
 }
 
-style.adjustment_pad_label_style = {
-    type = 'label_style',
-    parent = 'label',
-    maximal_width = 90,
-    minimal_width = 90
+style.adjustment_pad_flow_style = {
+    type = 'horizontal_flow_style',
+    vertical_align = 'center',
+    horizontal_spacing = 8
 }
 
 style.adjustment_pad_text_style = {
@@ -59,119 +75,13 @@ style.adjustment_pad_text_style = {
     font = 'default-small'
 }
 
-style.adjustment_pad_table_style = {
-    type = 'table_style',
-    parent = 'table',
-    cell_spacing = 0,
-    top_padding = 0,
-    left_padding = 0,
-    right_padding = 0,
-    bottom_padding = 0,
-    horizontal_spacing = 0,
+style.adjustment_pad_button_flow_style = {
+    type = 'vertical_flow_style',
     vertical_spacing = 0
 }
 
-style.adjustment_pad_btn_small_style = {
+style.adjustment_pad_btn_reset_style = {
     type = 'button_style',
-    parent = 'button',
-    maximal_height = 14,
-    minimal_height = 14,
-    maximal_width = 20,
-    minimal_width = 20,
-    font = 'adjustment_pad-button-font',
-    left_click_sound = {
-        {
-            filename = '__core__/sound/gui-click.ogg',
-            volume = 1
-        }
-    }
-}
-
-style.adjustment_pad_btn_up = {
-    type = 'button_style',
-    parent = 'adjustment_pad_btn_small_style',
-    default_graphical_set = {
-        filename = '__PickerAtheneum__/graphics/small-btns.png',
-        priority = 'extra-high-no-scale',
-        position = {0, 0},
-        size = {20, 14},
-        scale = 1
-    },
-    hovered_graphical_set = {
-        filename = '__PickerAtheneum__/graphics/small-btns.png',
-        priority = 'extra-high-no-scale',
-        position = {20, 0},
-        size = {20, 14},
-        scale = 1
-    },
-    clicked_graphical_set = {
-        filename = '__PickerAtheneum__/graphics/small-btns.png',
-        priority = 'extra-high-no-scale',
-        position = {20, 0},
-        size = {20, 14},
-        scale = 1
-    }
-}
-
-style.adjustment_pad_btn_dn = {
-    type = 'button_style',
-    parent = 'adjustment_pad_btn_small_style',
-    default_graphical_set = {
-        filename = '__PickerAtheneum__/graphics/small-btns.png',
-        priority = 'extra-high-no-scale',
-        size = {20, 14},
-        position = {0, 14},
-        scale = 1
-    },
-    hovered_graphical_set = {
-        filename = '__PickerAtheneum__/graphics/small-btns.png',
-        priority = 'extra-high-no-scale',
-        size = {20, 14},
-        position = {20, 14},
-        scale = 1
-    },
-    clicked_graphical_set = {
-        filename = '__PickerAtheneum__/graphics/small-btns.png',
-        priority = 'extra-high-no-scale',
-        size = {20, 14},
-        position = {20, 14},
-        scale = 1
-    }
-}
-
-style.adjustment_pad_btn_reset = {
-    type = 'button_style',
-    parent = 'button',
-    maximal_height = 28,
-    minimal_height = 28,
-    maximal_width = 20,
-    minimal_width = 20,
-    font = 'adjustment_pad-button-font',
-    left_click_sound = {
-        {
-            filename = '__core__/sound/gui-click.ogg',
-            volume = 1
-        }
-    },
-    default_graphical_set = {
-        filename = '__PickerAtheneum__/graphics/small-btns.png',
-        priority = 'extra-high-no-scale',
-        size = {20, 28},
-        position = {40, 0},
-        scale = 1
-    },
-    hovered_graphical_set = {
-        filename = '__PickerAtheneum__/graphics/small-btns.png',
-        priority = 'extra-high-no-scale',
-        size = {20, 28},
-        position = {60, 0},
-        scale = 1
-    },
-    clicked_graphical_set = {
-        filename = '__PickerAtheneum__/graphics/small-btns.png',
-        priority = 'extra-high-no-scale',
-        size = {20, 28},
-        position = {60, 0},
-        scale = 1
-    }
+    parent = 'red_icon_button',
+    left_margin = 1
 }

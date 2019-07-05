@@ -44,16 +44,17 @@ function Pad.get_or_create_adjustment_pad(player, name, flow_name) -- return gui
     local gui = main_flow[name .. '_frame_main']
     if not gui then
         gui = main_flow.add {type = 'frame', name = name .. '_frame_main', direction = 'horizontal', style = 'adjustment_pad_frame_style'}
-        gui.add {type = 'label', name = name .. '_label', caption = {name .. '-gui.label-caption'}, tooltip = {name .. '-tooltip.label-caption'}, style = 'adjustment_pad_label_style'}
-        gui.add {type = 'textfield', name = name .. '_text_box', text = 0, style = 'adjustment_pad_text_style'}
+        local flow = gui.add {type = 'flow', name = name .. '_flow', direction = 'horizontal', style = 'adjustment_pad_flow_style'}
+        flow.add {type = 'label', name = name .. '_label', caption = {name .. '-gui.label-caption'}, tooltip = {name .. '-tooltip.label-caption'}, style = 'heading_2_label'}
+        flow.add {type = 'textfield', name = name .. '_text_box', text = 0, style = 'adjustment_pad_text_style'}
         --Up/Down buttons
-        local gui_table = gui.add {type = 'table', name = name .. '_table', column_count = 1, style = 'adjustment_pad_table_style'}
-        gui_table.add {type = 'button', name = name .. '_btn_up', style = 'adjustment_pad_btn_up'}
-        gui_table.add {type = 'button', name = name .. '_btn_dn', style = 'adjustment_pad_btn_dn'}
+        local button_flow = flow.add {type = 'flow', name = name .. '_button_flow', direction = 'vertical', style = 'adjustment_pad_button_flow_style'}
+        button_flow.add {type = 'sprite-button', name = name .. '_btn_up', style = 'close_button', sprite = 'adjustment_pad_button_plus'}
+        button_flow.add {type = 'sprite-button', name = name .. '_btn_dn', style = 'close_button', sprite = 'adjustment_pad_button_minus'}
         --Reset button
-        gui.add {type = 'button', name = name .. '_btn_reset', style = 'adjustment_pad_btn_reset', tooltip = {name .. '-tooltip.label-reset'}}
+        flow.add {type = 'sprite-button', name = name .. '_btn_reset', tooltip = {name .. '-tooltip.label-reset'}, style = 'adjustment_pad_btn_reset_style', sprite = 'utility/reset'}
     end
-    return main_flow[name .. '_frame_main']
+    return gui[name .. '_flow']
 end
 
 return Pad
