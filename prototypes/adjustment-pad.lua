@@ -36,6 +36,22 @@ data:extend {
         position = {32,0},
         size = 32,
         flags = {'icon'}
+    },
+    {
+        type = 'sprite',
+        name = 'adjustment_pad_button_plus_dark',
+        filename = '__PickerAtheneum__/graphics/gui/frame-button-icons.png',
+        position = {0,32},
+        size = 32,
+        flags = {'icon'}
+    },
+    {
+        type = 'sprite',
+        name = 'adjustment_pad_button_minus_dark',
+        filename = '__PickerAtheneum__/graphics/gui/frame-button-icons.png',
+        position = {32,32},
+        size = 32,
+        flags = {'icon'}
     }
 }
 

@@ -49,8 +49,8 @@ function Pad.get_or_create_adjustment_pad(player, name, flow_name) -- return gui
         flow.add {type = 'textfield', name = name .. '_text_box', text = 0, style = 'adjustment_pad_text_style'}
         --Up/Down buttons
         local button_flow = flow.add {type = 'flow', name = name .. '_button_flow', direction = 'vertical', style = 'adjustment_pad_button_flow_style'}
-        button_flow.add {type = 'sprite-button', name = name .. '_btn_up', style = 'close_button', sprite = 'adjustment_pad_button_plus'}
-        button_flow.add {type = 'sprite-button', name = name .. '_btn_dn', style = 'close_button', sprite = 'adjustment_pad_button_minus'}
+        button_flow.add {type = 'sprite-button', name = name .. '_btn_up', style = 'close_button', sprite = 'adjustment_pad_button_plus', hovered_sprite = 'adjustment_pad_button_plus_dark', clicked_sprite = 'adjustment_pad_button_plus_dark'}
+        button_flow.add {type = 'sprite-button', name = name .. '_btn_dn', style = 'close_button', sprite = 'adjustment_pad_button_minus', hovered_sprite = 'adjustment_pad_button_minus_dark', clicked_sprite = 'adjustment_pad_button_minus_dark'}
         --Reset button
         flow.add {type = 'sprite-button', name = name .. '_btn_reset', tooltip = {name .. '-tooltip.label-reset'}, style = 'adjustment_pad_btn_reset_style', sprite = 'utility/reset'}
     end
