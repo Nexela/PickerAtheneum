@@ -1,6 +1,8 @@
 ---------------------------------------------------------------------------------------------------
 Version: 1.1.2
 Date: ??????
+  Features:
+    - Added simple intramod ticker script.
   Changes:
     - Adjustment Pad is mostly self contained and doesn't require remote calls.
 ---------------------------------------------------------------------------------------------------
