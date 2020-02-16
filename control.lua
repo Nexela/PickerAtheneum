@@ -1,5 +1,3 @@
-require('__stdlib__/stdlib/core').debugger()
-
 local Event = require('__stdlib__/stdlib/event/event')
 local Game = require('__stdlib__/stdlib/game')
 local interface = require('__stdlib__/stdlib/scripts/interface')
