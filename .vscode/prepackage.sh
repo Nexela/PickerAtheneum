@@ -1,4 +1,1 @@
-set -e
-
-echo ''
 luacheck .

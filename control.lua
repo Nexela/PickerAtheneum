@@ -5,7 +5,7 @@ local interface = require('__stdlib__/stdlib/scripts/interface')
 require('scripts/remote-queue')
 require('scripts/event-dispatcher')
 
-if require('__PickerAtheneum__/config').DEBUG then
+if prequire('__PickerAtheneum__/.debug/debug') then
     --require('__stdlib__/stdlib/scripts/console')
     local function reload(event)
         local player = game.players[event.player_index]

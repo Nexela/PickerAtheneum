@@ -9,7 +9,7 @@
     "homepage": "",
     "description": "Library Files for the Picker family of mods.",
     "package": {
-      "ignore": ["makefile"],
+      "ignore": ["makefile", "web/**"],
       "scripts": {
         "datestamp": ".vscode/datestamp.sh",
         "prepackage": ".vscode/prepackage.sh",

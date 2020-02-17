@@ -1,4 +1,6 @@
-if require('__PickerAtheneum__/config').DEBUG then
+require('__stdlib__/stdlib/utils/globals')
+
+if prequire('__PickerAtheneum__/.debug/debug') then
     require('__stdlib__/stdlib/data/developer/developer').make_test_entities()
     data:extend {
         {
