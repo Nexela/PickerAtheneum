@@ -24,7 +24,7 @@ end
 if script.active_mods["debugadapter"] then
     local function breakpoint()
         local globals = interface.get_globals()
-        __DebugAdapter.print('Manual Breakpoint Triggered') -- add breakpoint here to manually trigger
+        __DebugAdapter.breakpoint('Manual Breakpoint Triggered')
         return globals
     end
     Event.register('picker-trigger-breakpoint', breakpoint)
