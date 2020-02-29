@@ -1,0 +1,211 @@
+
+ {
+    "workbench.iconTheme": "vscode-icons",
+
+    "LuaCoderAssist.debug": false,
+    "LuaCoderAssist.useLove": false,
+    "LuaCoderAssist.format.lineWidth": 360,
+    "LuaCoderAssist.format.quotemark": "single",
+    "LuaCoderAssist.ldoc.authorInFunctionLevel": false,
+    "LuaCoderAssist.ldoc.authorName": "Nexela",
+    "LuaCoderAssist.luaPath": "/usr/local/bin/lua",
+    "LuaCoderAssist.luacheck.automaticOption": false,
+    "LuaCoderAssist.luacheck.enable": true,
+    "LuaCoderAssist.luacheck.execPath": "/usr/local/bin/luacheck",
+    "LuaCoderAssist.luacheck.fileSizeLimit": 500,
+    "LuaCoderAssist.luacheck.globals": [],
+    "LuaCoderAssist.luacheck.ignore": [],
+    "LuaCoderAssist.luacheck.jobs": 1,
+    "LuaCoderAssist.luacheck.keepAfterClosed": false,
+    "LuaCoderAssist.luacheck.onSave": true,
+    "LuaCoderAssist.luacheck.onTyping": true,
+    "LuaCoderAssist.luacheck.options": [],
+    "LuaCoderAssist.luacheck.std": [],
+    "LuaCoderAssist.luaparse.luaversion": 5.2,
+    "LuaCoderAssist.metric.enable": false,
+    "LuaCoderAssist.preloads": [
+        "/usr/local/share/lua/5.2",
+        "/home/nexela/Develop/cpp/Factorio/data/core/lualib"
+    ],
+    "LuaCoderAssist.search.externalPaths": [
+        "/usr/local/share/lua/5.2",
+        "/home/nexela/Develop/cpp/Factorio/data/core/lualib"
+    ],
+    "LuaCoderAssist.search.filters": [
+        ".build",
+        "spec",
+        "tools",
+        ".test",
+        "doc",
+        "wiki",
+        "stdlib-docs",
+        "faketorio",
+        "luarocks",
+        "cliargs",
+        "luacheck",
+        "socket",
+        "pl",
+        "busted",
+        "term"
+    ],
+    "LuaCoderAssist.search.followLinks": true,
+
+    "breadcrumbs.enabled": true,
+    "breadcrumbs.filePath": "on",
+
+    "code-runner.clearPreviousOutput": true,
+    "code-runner.fileDirectoryAsCwd": false,
+    "code-runner.ignoreSelection": true,
+    "code-runner.saveFileBeforeRun": true,
+    "code-runner.showRunIconInEditorTitleMenu": false,
+
+    "editor.acceptSuggestionOnEnter": "off",
+    "editor.fontFamily": "'Fira Code', 'Droid Sans Mono', 'monospace', monospace, 'Droid Sans Fallback'",
+    "editor.fontLigatures": true,
+    "editor.formatOnPaste": false,
+    "editor.formatOnType": false,
+    "editor.tabCompletion": "on",
+    "editor.quickSuggestions": {
+        "comments": false,
+        "other": true,
+        "strings": true
+    },
+
+    "errorLens.addAnnotationTextPrefixes": false,
+
+    "files.associations": {
+        "*.uiflow": "uiflow",
+        ".luacheckrc": "lua",
+        "*.ld": "lua"
+    },
+    "files.exclude": {
+        "**/.build": true,
+        "**/.DS_Store": true,
+        "**/.git": true,
+        "**/.hg": true,
+        "**/.history": true,
+        "**/.svn": true,
+        "**/.trash": true,
+        "**/CVS": true
+    },
+    "files.insertFinalNewline": true,
+    "files.trimFinalNewlines": true,
+    "files.trimTrailingWhitespace": true,
+    "files.watcherExclude": {
+        "**/.git/objects/**": true,
+        "**/.git/subtree-cache/**": true,
+        "**/node_modules/**": true
+    },
+
+    "git.confirmSync": false,
+
+    "gitlens.codeLens.scopes": [
+        "document"
+    ],
+
+    "problems.decorations.enabled": true,
+
+    "search.exclude": {
+        "**/.test": true,
+        "**/api-docs": true,
+        "**/bower_components": true,
+        "**/node_modules": true,
+        "**/PickerAssimilate": true,
+        "**/script-output": true
+    },
+    "search.followSymlinks": true,
+
+    "terminal.integrated.rendererType": "dom",
+
+    "window.title": "${dirty}${rootName}${separator}${activeEditorMedium}",
+    "window.zoomLevel": 0,
+
+    "vsicons.dontShowNewVersionMessage": true,
+
+    "cmake.configureOnOpen": false,
+
+    "workbench.colorTheme": "Dark+ (contrast)",
+    "workbench.enableExperiments": false,
+    "workbench.startupEditor": "none",
+    "workbench.preferredDarkColorTheme": "Dark+ (contrast)",
+    "workbench.tips.enabled": false,
+    "workbench.editor.closeOnFileDelete": true,
+    "workbench.settings.useSplitJSON": false,
+
+    "explorer.compactFolders": false,
+
+    "debug.toolBarLocation": "docked",
+
+    "telemetry.enableTelemetry": false,
+
+    "git.autofetchPeriod": 3600,
+    "git.autofetch": true,
+
+    "lua-local.interpreter": "lua-5.2",
+
+    "python.linting.pylintEnabled": true,
+    "python.linting.enabled": true,
+
+    "terminal.integrated.env.linux": {
+        "FACTORIO_MODS_PICKER": "/home/nexela/factorio/mods",
+        "FACTORIO_MODS_PYANODON": "/home/nexela/factorio/mods-pyanodon"
+    },
+
+    "todo-tree.filtering.useBuiltInExcludes": true,
+    "todo-tree.general.statusBar": "total",
+    "todo-tree.highlights.enabled": false,
+    "todo-tree.regex.regex": "((\\-\\-)\\s*($TAGS)+)",
+    "todo-tree.general.tags": [
+        "API",
+        "TODO",
+        "DEPRECATED",
+        "?",
+        "!",
+        "//",
+        "*"
+    ],
+    "better-comments.tags": [
+        {
+            "tag": "deprecated",
+            "color": "#FF2D00",
+            "strikethrough": true,
+            "backgroundColor": "transparent"
+        },
+        {
+            "tag": "todo",
+            "color": "#FF8C00",
+            "strikethrough": false,
+            "backgroundColor": "transparent"
+        },
+        {
+            "tag": "api",
+            "color": "#ff4500",
+            "strikethrough": false,
+            "backgroundColor": "transparent"
+        },
+        {
+            "tag": "?",
+            "color": "#3498DB",
+            "strikethrough": false,
+            "backgroundColor": "transparent"
+        },
+        {
+            "tag": "//",
+            "color": "#474747",
+            "strikethrough": true,
+            "backgroundColor": "transparent"
+        },
+        {
+            "tag": "*",
+            "color": "#FF8C00",
+            "strikethrough": false,
+            "backgroundColor": "transparent"
+        },
+        {
+            "tag": "!",
+            "color": "#FF2D00",
+            "strikethrough": false,
+            "backgroundColor": "transparent"
+        }
+    ]
+}
