@@ -8,7 +8,7 @@ jobs:
       - checkout
       - run: curl -s -o .luacheckrc https://raw.githubusercontent.com/Nexela/Factorio-luacheckrc/master/.luacheckrc
       - run: luacheck .
-      - run: .circleci/package
+      - run: .circleci/package.sh
       - store_artifacts:
           path: .bin
           destination: /files
