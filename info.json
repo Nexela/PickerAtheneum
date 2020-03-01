@@ -9,7 +9,7 @@
     "homepage": "",
     "description": "Library Files for the Picker family of mods.",
     "package": {
-      "ignore": ["makefile", "web/**"],
+      "ignore": [],
       "scripts": {
         "datestamp": "../PickerAtheneum/.publish/datestamp.sh",
         "prepackage": "../PickerAtheneum/.publish/prepackage.sh",
