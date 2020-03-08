@@ -1,0 +1,121 @@
+{
+	"folders": [
+		{
+			"path": "/home/nexela/Develop/Lua/Factorio/Factorio-Stdlib"
+		},
+		{
+			"path": "/home/nexela/Develop/Lua/Factorio/Picker/PickerAtheneum"
+		},
+		{
+			"path": "/home/nexela/Develop/Lua/Factorio/Picker/PickerBeltTools"
+		},
+		{
+			"path": "/home/nexela/Develop/Lua/Factorio/Picker/PickerBlueprinter"
+		},
+		{
+			"path": "/home/nexela/Develop/Lua/Factorio/Picker/PickerDollies"
+		},
+		{
+			"path": "/home/nexela/Develop/Lua/Factorio/Picker/PickerEquipmentKeys"
+		},
+		{
+			"path": "/home/nexela/Develop/Lua/Factorio/Picker/PickerExtended"
+		},
+		{
+			"path": "/home/nexela/Develop/Lua/Factorio/Picker/PickerInventoryTools"
+		},
+		{
+			"path": "/home/nexela/Develop/Lua/Factorio/Picker/PickerPipeTools"
+		},
+		{
+			"path": "/home/nexela/Develop/Lua/Factorio/Picker/PickerTweaks"
+		},
+		{
+			"path": "/home/nexela/Develop/Lua/Factorio/Picker/PickerVehicles"
+		},
+		{
+			"path": "/home/nexela/Develop/Lua/Factorio/Nanobots"
+		},
+		{
+			"path": "/home/nexela/Develop/Lua/Factorio/Factorio-luacheckrc"
+		}
+	],
+	"launch": {
+		"configurations": [
+			{
+				"type": "factoriomod",
+				"request": "launch",
+				"name": "Factorio Mod Debug",
+				"modsPath": "/home/nexela/factorio/mods",
+				"factorioPath": "/home/nexela/factorio/bin/x64/factorio",
+				"factorioArgs": [
+					"--load-game",
+					"/home/nexela/factorio/saves/factorio-vscode-debug"
+				],
+				"internalConsoleOptions": "openOnSessionStart",
+				"useInstrumentMode": true,
+				"manageMod": true
+			},
+			{
+				"type": "lua-local",
+				"name": "Debug Lua 5.2",
+				"request": "launch",
+				"program": {
+					"lua": "lua5.2",
+					"file": "${file}"
+				},
+				"cwd": "${fileDirname}",
+				"internalConsoleOptions": "openOnSessionStart",
+				"stopOnEntry": false,
+			},
+		],
+		"compounds": []
+	},
+	"tasks": {
+		"version": "2.0.0",
+		"tasks": [
+			{
+				"label": "Factorio",
+				"type": "shell",
+				"command": "/home/nexela/factorio/bin/x64/factorio",
+				"args": [
+					"--mod-directory",
+					"/home/nexela/factorio/mods",
+					//"--disable-prototype-history",
+					//"--disable-audio",
+					//"--check-unused-prototype-data",
+					//"--verbose",
+					"--load-game",
+					"/home/nexela/factorio/saves/factorio-vscode"
+				],
+				"problemMatcher": []
+			}
+		]
+	},
+	"extensions": {
+		"recommendations": [
+			"aaron-bond.better-comments",
+			"Cobinja.cobi-symbol-outline",
+			"codezombiech.gitignore",
+			"CoenraadS.bracket-pair-colorizer-2",
+			"eamodio.gitlens",
+			"formulahendry.code-runner",
+			"Gruntfuggly.todo-tree",
+			"jep-a.lua-plus",
+			"justarandomgeek.factoriomod-debug",
+			"k3a.theme-dark-plus-contrast",
+			"karigari.chat",
+			"liwangqian.luacoderassist",
+			"mhutchie.git-graph",
+			"ms-vsliveshare.vsliveshare",
+			"ms-vsliveshare.vsliveshare-audio",
+			"ms-vsliveshare.vsliveshare-pack",
+			"SirTori.indenticator",
+			"svizzini.factorio-lua-api-autocomplete",
+			"tomblind.local-lua-debugger-vscode",
+			"usernamehw.errorlens",
+			"vscode-icons-team.vscode-icons",
+			"vsls-contrib.gistfs",
+		]
+	}
+}

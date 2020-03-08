@@ -147,6 +147,7 @@
     "python.linting.enabled": true,
 
     "terminal.integrated.env.linux": {
+        "FACTORIO_MODS_FOLDER": "/home/nexela/factorio/mods",
         "FACTORIO_MODS_PICKER": "/home/nexela/factorio/mods",
         "FACTORIO_MODS_PYANODON": "/home/nexela/factorio/mods-pyanodon"
     },
