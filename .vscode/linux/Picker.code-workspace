@@ -46,6 +46,7 @@
 				"type": "factoriomod",
 				"request": "launch",
 				"name": "Factorio Mod Debug",
+				"configPath": "/home/nexela/factorio/config/config.ini",
 				"modsPath": "/home/nexela/factorio/mods",
 				"factorioPath": "/home/nexela/factorio/bin/x64/factorio",
 				"factorioArgs": [
@@ -70,27 +71,6 @@
 			},
 		],
 		"compounds": []
-	},
-	"tasks": {
-		"version": "2.0.0",
-		"tasks": [
-			{
-				"label": "Factorio",
-				"type": "shell",
-				"command": "/home/nexela/factorio/bin/x64/factorio",
-				"args": [
-					"--mod-directory",
-					"/home/nexela/factorio/mods",
-					//"--disable-prototype-history",
-					//"--disable-audio",
-					//"--check-unused-prototype-data",
-					//"--verbose",
-					"--load-game",
-					"/home/nexela/factorio/saves/factorio-vscode"
-				],
-				"problemMatcher": []
-			}
-		]
 	},
 	"extensions": {
 		"recommendations": [
