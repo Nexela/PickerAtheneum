@@ -1,3 +1,3 @@
-mkdir -p .bin
-mv *.zip ./.bin/
+# mkdir -p .bin
+# mv *.zip ./.bin/
 exit 0
