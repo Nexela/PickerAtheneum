@@ -46,8 +46,8 @@
 				"type": "factoriomod",
 				"request": "launch",
 				"name": "Factorio Mod Debug",
-				"configPath": "/home/nexela/factorio/config/config.ini",
-				"modsPath": "/home/nexela/factorio/mods",
+				//"configPath": "/home/nexela/factorio/config/config.ini",
+				//"modsPath": "/home/nexela/factorio/mods",
 				"factorioPath": "/home/nexela/factorio/bin/x64/factorio",
 				"factorioArgs": [
 					"--load-game",
@@ -55,7 +55,12 @@
 				],
 				"internalConsoleOptions": "openOnSessionStart",
 				"useInstrumentMode": true,
-				"manageMod": true
+				"manageMod": true,
+				"presentation": {
+					"hidden": false,
+					"group": "workspace",
+					"order": 1
+				}
 			},
 			{
 				"type": "lua-local",
@@ -68,6 +73,11 @@
 				"cwd": "${fileDirname}",
 				"internalConsoleOptions": "openOnSessionStart",
 				"stopOnEntry": false,
+				"presentation": {
+					"hidden": false,
+					"group": "workspace",
+					"order": 2
+				}
 			},
 		],
 		"compounds": []
