@@ -38,6 +38,9 @@
 		},
 		{
 			"path": "/home/nexela/Develop/Lua/Factorio/Factorio-luacheckrc"
+		},
+		{
+			"path": "/home/nexela/factorio/script-output"
 		}
 	],
 	"launch": {
@@ -50,6 +53,7 @@
 				//"modsPath": "/home/nexela/factorio/mods",
 				"factorioPath": "/home/nexela/factorio/bin/x64/factorio",
 				"factorioArgs": [
+					"--disable-migration-window",
 					"--load-game",
 					"/home/nexela/factorio/saves/factorio-vscode-debug"
 				],
@@ -60,6 +64,27 @@
 					"hidden": false,
 					"group": "workspace",
 					"order": 1
+				}
+			},
+			{
+				"type": "factoriomod",
+				"request": "launch",
+				"name": "Factorio Git Mod Debug",
+				"configPath": "/home/nexela/Develop/Cpp/Factorio/config/config.ini",
+				"modsPath": "/home/nexela/factorio/mods",
+				"factorioPath": "/home/nexela/Develop/Cpp/Factorio/build/bin/Factorio_unity",
+				"factorioArgs": [
+					"--disable-migration-window",
+					// "--load-game",
+					// "/home/nexela/factorio/saves/factorio-vscode-debug"
+				],
+				"internalConsoleOptions": "openOnSessionStart",
+				"useInstrumentMode": true,
+				"manageMod": true,
+				"presentation": {
+					"hidden": false,
+					"group": "workspace",
+					"order": 2
 				}
 			},
 			{
@@ -76,7 +101,7 @@
 				"presentation": {
 					"hidden": false,
 					"group": "workspace",
-					"order": 2
+					"order": 99
 				}
 			},
 		],
