@@ -1,46 +1,46 @@
 {
 	"folders": [
 		{
-			"path": "/home/nexela/Develop/Lua/Factorio/Factorio-Stdlib"
+			"path": "../../../../Factorio-Stdlib"
 		},
 		{
-			"path": "/home/nexela/Develop/Lua/Factorio/Picker/PickerAtheneum"
+			"path": "../../../../Picker/PickerAtheneum"
 		},
 		{
-			"path": "/home/nexela/Develop/Lua/Factorio/Picker/PickerBeltTools"
+			"path": "../../../../Picker/PickerBeltTools"
 		},
 		{
-			"path": "/home/nexela/Develop/Lua/Factorio/Picker/PickerBlueprinter"
+			"path": "../../../../Picker/PickerBlueprinter"
 		},
 		{
-			"path": "/home/nexela/Develop/Lua/Factorio/Picker/PickerDollies"
+			"path": "../../../../Picker/PickerDollies"
 		},
 		{
-			"path": "/home/nexela/Develop/Lua/Factorio/Picker/PickerEquipmentKeys"
+			"path": "../../../../Picker/PickerEquipmentKeys"
 		},
 		{
-			"path": "/home/nexela/Develop/Lua/Factorio/Picker/PickerExtended"
+			"path": "../../../../Picker/PickerExtended"
 		},
 		{
-			"path": "/home/nexela/Develop/Lua/Factorio/Picker/PickerInventoryTools"
+			"path": "../../../../Picker/PickerInventoryTools"
 		},
 		{
-			"path": "/home/nexela/Develop/Lua/Factorio/Picker/PickerPipeTools"
+			"path": "../../../../Picker/PickerPipeTools"
 		},
 		{
-			"path": "/home/nexela/Develop/Lua/Factorio/Picker/PickerTweaks"
+			"path": "../../../../Picker/PickerTweaks"
 		},
 		{
-			"path": "/home/nexela/Develop/Lua/Factorio/Picker/PickerVehicles"
+			"path": "../../../../Picker/PickerVehicles"
 		},
 		{
-			"path": "/home/nexela/Develop/Lua/Factorio/Nanobots"
+			"path": "../../../../Nanobots"
 		},
 		{
-			"path": "/home/nexela/Develop/Lua/Factorio/Factorio-luacheckrc"
+			"path": "../../../../Factorio-luacheckrc"
 		},
 		{
-			"path": "/home/nexela/factorio/script-output"
+			"path": "../../../../../../../factorio/script-output"
 		}
 	],
 	"launch": {
