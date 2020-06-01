@@ -95,6 +95,6 @@ style.adjustment_pad_button_flow_style = {
 
 style.adjustment_pad_btn_reset_style = {
     type = 'button_style',
-    parent = style['tool_button_red'] and 'tool_button_red' or 'red_icon_button',
+    parent = 'tool_button_red',
     left_margin = 1
 }
