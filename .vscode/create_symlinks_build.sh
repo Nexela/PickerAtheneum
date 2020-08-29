@@ -1,4 +1,4 @@
-echo "Creating or Updating Symlinks in /media/nexela/SSD/Develop/Cpp/Factorio/mods/"
+echo "Creating or Updating Symlinks in Develop"
 
 # Run from PickerAtheneum
 # .publish/install_symlinks.sh
@@ -6,6 +6,6 @@ echo "Creating or Updating Symlinks in /media/nexela/SSD/Develop/Cpp/Factorio/mo
 for FILE in $(find $(pwd)/../ -iname 'info.json' -type f)
 do
     MODNAME=$(jq -r .name ${FILE})
-    rm -f /home/nexela/factorio/mods/${MODNAME}
-    ln -s $(dirname ${FILE}) /home/nexela/factorio/mods/${MODNAME}
+    rm -f /home/nexela/Develop/Cpp/factorio/mods/${MODNAME}
+    ln -s $(dirname ${FILE}) /home/nexela/Develop/Cpp/factorio/mods/${MODNAME}
 done

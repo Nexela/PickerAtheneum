@@ -37,7 +37,7 @@
 			"path": "../../../../Factorio-luacheckrc"
 		},
 		{
-			"path": "../../../../../../../factorio/script-output"
+			"path": "/home/nexela/factorio/script-output"
 		}
 	],
 	"launch": {
@@ -107,7 +107,6 @@
 	"extensions": {
 		"recommendations": [
 			"aaron-bond.better-comments",
-			"Cobinja.cobi-symbol-outline",
 			"codezombiech.gitignore",
 			"CoenraadS.bracket-pair-colorizer-2",
 			"eamodio.gitlens",
@@ -129,5 +128,6 @@
 			"vscode-icons-team.vscode-icons",
 			"vsls-contrib.gistfs",
 		]
-	}
+	},
+	"settings": {}
 }
