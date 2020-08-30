@@ -57,6 +57,8 @@
 				"internalConsoleOptions": "openOnSessionStart",
 				"useInstrumentMode": true,
 				"manageMod": true,
+				"hookData": false,
+				"hookSettings": false,
 				"presentation": {
 					"hidden": false,
 					"group": "workspace",
@@ -67,9 +69,9 @@
 				"type": "factoriomod",
 				"request": "launch",
 				"name": "Factorio Git Mod Debug",
-				"configPath": "/home/nexela/Develop/Cpp/Factorio/config/config.ini",
+				"configPath": "/home/nexela/Develop/Cpp/factorio/config/config.ini",
 				"modsPath": "/home/nexela/factorio/mods",
-				"factorioPath": "/home/nexela/Develop/Cpp/Factorio/build/bin/Factorio_unity",
+				"factorioPath": "/home/nexela/Develop/Cpp/factorio/build/bin/Factorio_unity",
 				"factorioArgs": [
 					"--disable-migration-window",
 					// "--load-game",
@@ -78,6 +80,8 @@
 				"internalConsoleOptions": "openOnSessionStart",
 				"useInstrumentMode": true,
 				"manageMod": true,
+				"hookData": false,
+				"hookSettings": false,
 				"presentation": {
 					"hidden": false,
 					"group": "workspace",
