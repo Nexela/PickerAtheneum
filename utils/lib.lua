@@ -230,9 +230,9 @@ end
 
 function lib.set_or_swap_item(player, slot, item, set)
     if type(item) == "string" then
-        return (set and slot.set_stack(item)) or (player.clean_cursor() and slot.set_stack(item))
+        return (set and slot.set_stack(item)) or (player.clear_cursor() and slot.set_stack(item))
     end
-    return item and ((set and slot.set_stack(item)) or (player.clean_cursor() and slot.swap_stack(item) or slot.set_stack(item)))
+    return item and ((set and slot.set_stack(item)) or (player.clear_cursor() and slot.swap_stack(item) or slot.set_stack(item)))
 end
 
 
