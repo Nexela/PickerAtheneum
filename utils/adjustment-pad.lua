@@ -7,8 +7,14 @@ local Gui = require('__stdlib__/stdlib/event/gui')
 local lib = require('__PickerAtheneum__/utils/lib')
 
 function Pad.register_events(pad_name, func, events)
-    Gui.on_confirmed(pad_name .. '_text_box', func)
     Gui.on_click(pad_name .. '_btn_reset', func)
+    Gui.on_confirmed(
+        pad_name .. '_text_box',
+        function(event)
+            event.change = true
+            func(event)
+        end
+    )
     Gui.on_click(
         pad_name .. '_btn_up',
         function(event)
