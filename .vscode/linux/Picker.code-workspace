@@ -19,6 +19,9 @@
 			"path": "../../../../Picker/PickerExtended"
 		},
 		{
+			"path": "../../../PickerFill"
+		},
+		{
 			"path": "../../../../Picker/PickerInventoryTools"
 		},
 		{
@@ -119,7 +122,6 @@
 			"jep-a.lua-plus",
 			"justarandomgeek.factoriomod-debug",
 			"k3a.theme-dark-plus-contrast",
-			"karigari.chat",
 			"liwangqian.luacoderassist",
 			"mhutchie.git-graph",
 			"ms-vsliveshare.vsliveshare",
