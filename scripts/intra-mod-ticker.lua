@@ -10,11 +10,10 @@ local tick_options = {
 
 local function on_tick()
     if global.tick_queue then
-        local queue = global.tick_queue() -- pop goes the weasel
-        if queue then
-            if queue.event_name then
-                Event.raise_event(queue.event_name, queue)
-            end
+        -- Pop an event off the queue
+        local event = global.tick_queue()
+        if event then
+            Event.raise_event(event.name, event)
         else
             Event.remove(defines.events.on_tick, on_tick)
             global.tick_queue = nil
@@ -24,14 +23,16 @@ local function on_tick()
     end
 end
 
-local function start_tick(queue)
+local function push_tick(event)
     if not global.tick_queue then
         global.tick_queue = Queue()
         Event.on_event(defines.events.on_tick, on_tick, nil, nil, tick_options)
     end
-    global.tick_queue(queue)
+    -- Push an event into the queue
+    global.tick_queue(event)
 end
 
+-- On load,  load the metatable into the queue if it exsits and start the ticker
 local function on_load()
     if global.tick_queue then
         Queue.load(global.tick_queue)
@@ -40,4 +41,4 @@ local function on_load()
 end
 Event.on_load(on_load)
 
-return start_tick
+return push_tick
