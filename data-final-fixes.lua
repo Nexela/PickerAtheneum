@@ -1,7 +1,7 @@
 require('__stdlib__/stdlib/utils/globals')
+require('scenarios/testing/data')
 
-if prequire('__PickerAtheneum__/.debug/debug') then
-    require('__stdlib__/stdlib/data/developer/developer').make_test_entities()
+if settings.startup['picker-debug'].value then
     data:extend {
         {
             type = 'custom-input',

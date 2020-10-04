@@ -5,5 +5,12 @@ data:extend {
         setting_type = 'runtime-global',
         default_value = true,
         order = 'picker[admin]'
+    },
+    {
+        type = 'bool-setting',
+        name = 'picker-debug',
+        setting_type = 'startup',
+        default_value = false,
+        order = 'a'
     }
 }

@@ -1,43 +1,43 @@
 {
 	"folders": [
 		{
-			"path": "../../../../Factorio-Stdlib"
+			"path": "../../../stdlib"
 		},
 		{
-			"path": "../../../../Picker/PickerAtheneum"
+			"path": "../../../PickerAtheneum"
 		},
 		{
-			"path": "../../../../Picker/PickerBeltTools"
+			"path": "../../../PickerBeltTools"
 		},
 		{
-			"path": "../../../../Picker/PickerBlueprinter"
+			"path": "../../../PickerBlueprinter"
 		},
 		{
-			"path": "../../../../Picker/PickerDollies"
+			"path": "../../../PickerDollies"
 		},
 		{
-			"path": "../../../../Picker/PickerExtended"
+			"path": "../../../PickerExtended"
 		},
 		{
 			"path": "../../../PickerFill"
 		},
 		{
-			"path": "../../../../Picker/PickerInventoryTools"
+			"path": "../../../PickerInventoryTools"
 		},
 		{
-			"path": "../../../../Picker/PickerPipeTools"
+			"path": "../../../PickerPipeTools"
 		},
 		{
-			"path": "../../../../Picker/PickerTweaks"
+			"path": "../../../PickerTweaks"
 		},
 		{
-			"path": "../../../../Picker/PickerVehicles"
+			"path": "../../../PickerVehicles"
 		},
 		{
-			"path": "../../../../Nanobots"
+			"path": "../../../Nanobots"
 		},
 		{
-			"path": "../../../../Factorio-luacheckrc"
+			"path": "../../../Factorio-luacheckrc"
 		},
 		{
 			"path": "/home/nexela/factorio/script-output"
@@ -49,13 +49,13 @@
 				"type": "factoriomod",
 				"request": "launch",
 				"name": "Factorio Mod Debug",
-				//"configPath": "/home/nexela/factorio/config/config.ini",
-				//"modsPath": "/home/nexela/factorio/mods",
 				"factorioPath": "/home/nexela/factorio/bin/x64/factorio",
+				"modsPath": "/home/nexela/Develop/Lua/Factorio",
 				"factorioArgs": [
 					"--disable-migration-window",
-					"--load-game",
-					"/home/nexela/factorio/saves/factorio-vscode-debug"
+					"--load-scenario",
+					"PickerAtheneum/testing",
+					// "--preset=debug",
 				],
 				"internalConsoleOptions": "openOnSessionStart",
 				"useInstrumentMode": true,
@@ -66,15 +66,40 @@
 					"hidden": false,
 					"group": "workspace",
 					"order": 1
-				}
+				},
+				"hookMode": "debug"
 			},
+			{
+				"type": "factoriomod",
+				"request": "launch",
+				"name": "Factorio Mod Profile",
+				"factorioPath": "/home/nexela/factorio/bin/x64/factorio",
+				"modsPath": "/home/nexela/Develop/Lua/Factorio",
+				"factorioArgs": [
+					"--load-scenario",
+					"PickerAtheneum/testing",
+				],
+				"internalConsoleOptions": "openOnSessionStart",
+				"useInstrumentMode": true,
+				"manageMod": true,
+				"hookData": false,
+				"hookSettings": false,
+				"presentation": {
+					"hidden": false,
+					"group": "workspace",
+					"order": 2
+				},
+				"hookMode": "profile"
+			},
+
 			{
 				"type": "factoriomod",
 				"request": "launch",
 				"name": "Factorio Git Mod Debug",
 				"configPath": "/home/nexela/Develop/Cpp/factorio/config/config.ini",
-				"modsPath": "/home/nexela/factorio/mods",
+				// "modsPath": "/home/nexela/factorio/mods",
 				"factorioPath": "/home/nexela/Develop/Cpp/factorio/build/bin/Factorio_unity",
+				"modsPath": "/home/nexela/Develop/Lua/Factorio",
 				"factorioArgs": [
 					"--disable-migration-window",
 					// "--load-game",
@@ -88,7 +113,7 @@
 				"presentation": {
 					"hidden": false,
 					"group": "workspace",
-					"order": 2
+					"order": 20
 				}
 			},
 			{
