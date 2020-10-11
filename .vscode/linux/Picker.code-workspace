@@ -53,6 +53,7 @@
 				"modsPath": "/home/nexela/Develop/Lua/Factorio",
 				"factorioArgs": [
 					"--disable-migration-window",
+					"--check-unused-prototype-data",
 					"--load-scenario",
 					"PickerAtheneum/testing",
 					// "--preset=debug",

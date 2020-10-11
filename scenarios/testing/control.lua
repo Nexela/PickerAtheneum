@@ -172,7 +172,7 @@ local function chart_area(surface, starting_area, force)
     force.chart(surface, chart)
 end
 
-local function on_chunk_generated(event)
+local function conditional_on_chunk_generated(event)
     local chunk_pos = Position(event.position)
     local surface = event.surface
     if surface == game.surfaces[1] and (chunk_pos == water1 or chunk_pos == water2) then
@@ -191,7 +191,6 @@ local function on_chunk_generated(event)
         Event.remove(defines.events.on_chunk_generated, on_chunk_generated)
     end
 end
-Event.on_event(defines.events.on_chunk_generated, on_chunk_generated)
 
 local function on_init()
     local force = game.forces['player']
@@ -220,14 +219,14 @@ local function on_init()
     if surface.is_chunk_generated(water1) and surface.is_chunk_generated(water2) then
         global.water1_generated, global.water2_generated = true, true
     else
-        Event.register(defines.events.on_chunk_generated, on_chunk_generated)
+        Event.register(defines.events.on_chunk_generated, conditional_on_chunk_generated)
     end
 end
 Event.on_init(on_init)
 
 local function on_load()
     if not (global.water1_generated and global.water2_generated) then
-        Event.register(defines.events.on_chunk_generated, on_chunk_generated)
+        Event.register(defines.events.on_chunk_generated, conditional_on_chunk_generated)
     end
 end
 Event.on_load(on_load)
