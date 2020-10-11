@@ -21,7 +21,6 @@ style.picker_table = {
     bottom_padding = 0,
     right_padding = 0,
     left_padding = 0,
-    cell_spacing = 0,
     horizontal_spacing = 0,
     vertical_spacing = 0
 }
@@ -39,12 +38,6 @@ style.picker_buttons = {
     right_padding = 0,
     left_padding = 0,
     left_click_sound = {
-        {
-            filename = '__core__/sound/gui-click.ogg',
-            volume = 1
-        }
-    },
-    right_click_sound = {
         {
             filename = '__core__/sound/gui-click.ogg',
             volume = 1
@@ -84,7 +77,6 @@ style.picker_buttons_med_off = {
             16,
             16
         },
-        priority = 'extra-high-no-scale',
         type = 'composition'
     }
 }
@@ -106,14 +98,12 @@ style.row_table_style = {
     odd_row_graphical_set = {
         type = 'composition',
         filename = '__core__/graphics/gui.png',
-        priority = 'extra-high-no-scale',
         corner_size = {3, 3},
         position = {8, 0}
     },
     even_row_graphical_set = {
         type = 'composition',
         filename = '__core__/graphics/gui.png',
-        priority = 'extra-high-no-scale',
         corner_size = {3, 3},
         position = {8, 0}
     }
