@@ -1,0 +1,169 @@
+{
+    // Use IntelliSense to learn about possible attributes.
+    // Hover to view descriptions of existing attributes.
+    // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "type": "factoriomod",
+            "request": "launch",
+            "name": "Picker Control Debug",
+            "factorioPath": "/home/nexela/factorio/bin/x64/factorio",
+            "modsPath": "/home/nexela/Develop/Lua/Factorio",
+            "factorioArgs": [
+                "--disable-migration-window",
+                "--load-scenario",
+                "PickerAtheneum/testing",
+                "--preset=debug",
+            ],
+            "adjustMods": {
+                "stdlib": true,
+                "PickerAtheneum": true,
+                "PickerBeltTools": true,
+                "PickerBlueprinter": true,
+                "PickerDollies": true,
+                "PickerExtended": true,
+                "PickerFill": true,
+                "PickerInventoryTools": true,
+                "PickerPipeTools": true,
+                "PickerTweaks": true,
+                "PickerVehicles": true,
+                "Nanobots": true,
+                "EditorExtensions": true,
+                "flib": true,
+                "color-coding": true,
+                "BotPrioritizer": true
+            },
+            "disableExtraMods": true,
+            "checkEvents": false,
+            // "checkGlobals": true,
+            "checkPrototypes": true,
+            "internalConsoleOptions": "openOnSessionStart",
+            "useInstrumentMode": true,
+            "manageMod": true,
+            "hookData": false,
+            "hookSettings": false,
+            "presentation": {
+                "hidden": false,
+                "group": "workspace",
+                "order": 1
+            },
+            "hookMode": "debug"
+        },
+        {
+            "type": "factoriomod",
+            "request": "launch",
+            "name": "Factorio Control Debug",
+            "factorioPath": "/home/nexela/factorio/bin/x64/factorio",
+            "modsPath": "/home/nexela/Develop/Lua/Factorio",
+            "factorioArgs": [
+                "--disable-migration-window",
+                "--load-scenario",
+                "PickerAtheneum/testing",
+                "--preset=debug",
+            ],
+            "checkEvents": true,
+            // "checkGlobals": true,
+            "checkPrototypes": true,
+            "internalConsoleOptions": "openOnSessionStart",
+            "useInstrumentMode": true,
+            "manageMod": true,
+            "hookData": false,
+            "hookSettings": false,
+            "presentation": {
+                "hidden": false,
+                "group": "workspace",
+                "order": 1
+            },
+            "hookMode": "debug"
+        },
+        {
+            "type": "factoriomod",
+            "request": "launch",
+            "name": "Factorio Mod Debug ALL",
+            "factorioPath": "/home/nexela/factorio/bin/x64/factorio",
+            "modsPath": "/home/nexela/Develop/Lua/Factorio",
+            "factorioArgs": [
+                "--disable-migration-window",
+                "--load-scenario",
+                "PickerAtheneum/testing",
+                "--preset=debug",
+            ],
+            "internalConsoleOptions": "openOnSessionStart",
+            "useInstrumentMode": true,
+            "manageMod": true,
+            "hookData": true,
+            "hookSettings": true,
+            "presentation": {
+                "hidden": false,
+                "group": "workspace",
+                "order": 1
+            },
+            "hookMode": "debug"
+        },
+        {
+            "type": "factoriomod",
+            "request": "launch",
+            "name": "Factorio Mod Profile",
+            "factorioPath": "/home/nexela/factorio/bin/x64/factorio",
+            "modsPath": "/home/nexela/Develop/Lua/Factorio",
+            "factorioArgs": [
+                "--load-scenario",
+                "PickerAtheneum/testing",
+            ],
+            "internalConsoleOptions": "openOnSessionStart",
+            "useInstrumentMode": true,
+            "manageMod": true,
+            "hookData": false,
+            "hookSettings": false,
+            "presentation": {
+                "hidden": false,
+                "group": "workspace",
+                "order": 2
+            },
+            "hookMode": "profile"
+        },
+        {
+            "type": "factoriomod",
+            "request": "launch",
+            "name": "Factorio Source Debug",
+            "configPath": "/home/nexela/Develop/Cpp/factorio/config/config.ini",
+            // "modsPath": "/home/nexela/factorio/mods",
+            "factorioPath": "/home/nexela/Develop/Cpp/factorio/build/bin/Factorio_unity",
+            "modsPath": "/home/nexela/Develop/Lua/Factorio",
+            "factorioArgs": [
+                "--disable-migration-window",
+                // "--load-game",
+                // "/home/nexela/factorio/saves/factorio-vscode-debug"
+            ],
+            "internalConsoleOptions": "openOnSessionStart",
+            "useInstrumentMode": true,
+            "manageMod": true,
+            "hookData": false,
+            "hookSettings": false,
+            "presentation": {
+                "hidden": false,
+                "group": "workspace",
+                "order": 20
+            }
+        },
+        {
+            "type": "lua-local",
+            "name": "Debug Lua 5.2",
+            "request": "launch",
+            "program": {
+                "lua": "lua5.2",
+                "file": "${file}"
+            },
+            "cwd": "${fileDirname}",
+            "internalConsoleOptions": "openOnSessionStart",
+            "stopOnEntry": false,
+            "presentation": {
+                "hidden": false,
+                "group": "workspace",
+                "order": 99
+            }
+        },
+    ],
+    "compounds": []
+}
