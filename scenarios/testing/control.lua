@@ -188,7 +188,7 @@ local function conditional_on_chunk_generated(event)
         global.water2_generated = global.water2_generated or chunk_pos == water2
     end
     if global.water1_generated and global.water2_generated then
-        Event.remove(defines.events.on_chunk_generated, on_chunk_generated)
+        Event.remove(defines.events.on_chunk_generated, conditional_on_chunk_generated)
     end
 end
 
