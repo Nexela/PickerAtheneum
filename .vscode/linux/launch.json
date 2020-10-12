@@ -14,7 +14,7 @@
                 "--disable-migration-window",
                 "--load-scenario",
                 "PickerAtheneum/testing",
-                "--preset=debug",
+                "--preset=debug"
             ],
             "adjustMods": {
                 "stdlib": true,
@@ -60,7 +60,7 @@
                 "--disable-migration-window",
                 "--load-scenario",
                 "PickerAtheneum/testing",
-                "--preset=debug",
+                "--preset=debug"
             ],
             "checkEvents": true,
             // "checkGlobals": true,
@@ -87,7 +87,7 @@
                 "--disable-migration-window",
                 "--load-scenario",
                 "PickerAtheneum/testing",
-                "--preset=debug",
+                "--preset=debug"
             ],
             "internalConsoleOptions": "openOnSessionStart",
             "useInstrumentMode": true,
@@ -109,7 +109,7 @@
             "modsPath": "/home/nexela/Develop/Lua/Factorio",
             "factorioArgs": [
                 "--load-scenario",
-                "PickerAtheneum/testing",
+                "PickerAtheneum/testing"
             ],
             "internalConsoleOptions": "openOnSessionStart",
             "useInstrumentMode": true,
@@ -132,7 +132,7 @@
             "factorioPath": "/home/nexela/Develop/Cpp/factorio/build/bin/Factorio_unity",
             "modsPath": "/home/nexela/Develop/Lua/Factorio",
             "factorioArgs": [
-                "--disable-migration-window",
+                "--disable-migration-window"
                 // "--load-game",
                 // "/home/nexela/factorio/saves/factorio-vscode-debug"
             ],
@@ -163,7 +163,7 @@
                 "group": "workspace",
                 "order": 99
             }
-        },
+        }
     ],
     "compounds": []
 }
