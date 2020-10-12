@@ -3,6 +3,8 @@ local Game = require('__stdlib__/stdlib/game')
 local interface = require('__stdlib__/stdlib/scripts/interface')
 
 local a -- Intentional warning for .github actions
+local b
+local c -- last check before converting to an orginization
 
 require('scripts/remote-queue')
 require('scripts/event-dispatcher')
