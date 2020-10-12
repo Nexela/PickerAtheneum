@@ -2,6 +2,8 @@ local Event = require('__stdlib__/stdlib/event/event')
 local Game = require('__stdlib__/stdlib/game')
 local interface = require('__stdlib__/stdlib/scripts/interface')
 
+local a -- Intentional warning for .github actions
+
 require('scripts/remote-queue')
 require('scripts/event-dispatcher')
 
