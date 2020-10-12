@@ -1,4 +1,6 @@
 #git clone git@github.com:nexela/PickerAtheneum.git
+cd ../
+git submodule update --init --recursive
 cd ../../
 git clone git@github.com:nexela/PickerExtended.git
 git clone git@github.com:nexela/PickerTweaks
