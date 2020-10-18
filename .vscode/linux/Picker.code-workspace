@@ -103,8 +103,8 @@
 				"internalConsoleOptions": "openOnSessionStart",
 				"useInstrumentMode": true,
 				"manageMod": true,
-				"hookData": true,
-				"hookSettings": true,
+				"hookData": false,
+				"hookSettings": false,
 				"presentation": {
 					"hidden": false,
 					"group": "workspace",
