@@ -5,27 +5,22 @@ local interface = require('__stdlib__/stdlib/scripts/interface')
 require('scripts/remote-queue')
 require('scripts/event-dispatcher')
 
-if prequire('__PickerAtheneum__/.debug/debug') then
-    --require('__stdlib__/stdlib/scripts/console')
+if settings.startup['picker-debug'].value then
     local function reload(event)
         local player = game.players[event.player_index]
         player.clear_console()
-        game.print('Reloading Mods')
+        game.print(script.mod_name .. ' is reloading mods.')
         game.reload_mods()
     end
-    log(script.mod_name .. ' Developer World Enabled.')
     commands.add_command('Picker.reload', 'Reset', reload)
     require('__stdlib__/stdlib/utils/globals').create_stdlib_globals()
-    require('__stdlib__/stdlib/scripts/quickstart').register_events()
     Event.register('picker-reload-mods', reload)
     Event.register('picker-dump-data', interface.dump_all)
 end
 
 if script.active_mods["debugadapter"] then
     local function breakpoint()
-        local globals = interface.get_globals()
         __DebugAdapter.breakpoint('Manual Breakpoint Triggered')
-        return globals
     end
     Event.register('picker-trigger-breakpoint', breakpoint)
 end

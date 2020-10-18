@@ -1,9 +1,12 @@
 ---------------------------------------------------------------------------------------------------
 Version: 1.2.3
 Date: ????
+  Features:
+    - Added testing scenario.
   Changes:
     - clean_cursor renamed to clear_cursor.
     - Adjustment Pad now correctly works with text gui confirmed.
+    - Clean up prototype loading.
 ---------------------------------------------------------------------------------------------------
 Version: 1.2.2
 Date: 2020-06-01

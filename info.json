@@ -5,7 +5,7 @@
     "title": "Picker Atheneum",
     "author": "Nexela",
     "contact": "nexela@gmail.com",
-    "dependencies": ["base >= 0.18.0", "stdlib >= 1.2.0", "(?) boblogistics"],
+    "dependencies": ["base >= 0.18.0", "stdlib >= 1.2.0", "(?) boblibrary"],
     "homepage": "",
     "description": "Library Files for the Picker family of mods.",
     "package": {
@@ -13,9 +13,10 @@
       "scripts": {
         "datestamp": "../PickerAtheneum/.publish/datestamp.sh",
         "prepackage": "../PickerAtheneum/.publish/prepackage.sh",
+        "version": "../PickerAtheneum/.publish/version.sh",
         "prepublish": "../PickerAtheneum/.publish/prepublish.sh",
         "publish": "../PickerAtheneum/.publish/publish.sh",
-        "version": "../PickerAtheneum/.publish/version.sh"
+        "postpublish": "../PickerAtheneum/.publish/postpublish.sh"
       }
     }
   }

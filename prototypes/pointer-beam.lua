@@ -5,6 +5,7 @@ local marker_beams = Data('electric-beam-no-sound', 'beam'):copy('picker-pointer
 marker_beams.width = 1.0
 marker_beams.damage_interval = 2000000000
 marker_beams.action = nil
+marker_beams.light_animations = nil
 marker_beams.start = Data.Sprites.empty_pictures()
 marker_beams.start_light = Data.Sprites.empty_picture()
 marker_beams.ending = Data.Sprites.empty_pictures()
