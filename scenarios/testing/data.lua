@@ -36,7 +36,6 @@ Data('substation', 'electric-pole'):copy('debug-substation'):set_fields {
 
 local gen = data.raw['map-gen-presets']
 gen['default']['debug'] = {
-    type = 'map-gen-presets',
     order = 'z',
     basic_settings = {
         terrain_segmentation = 'very-low',
