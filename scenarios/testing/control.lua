@@ -276,6 +276,7 @@ Event.on_event(defines.events.on_player_joined_game, on_player_joined_game)
 local function on_player_cheat_mode_enabled(event)
     local player = game.get_player(event.player_index)
     player.force.research_all_technologies()
+    player.clear_recipe_notifications()
     local character = player.character
     if character then
         player.character_running_speed_modifier = 2
