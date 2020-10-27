@@ -42,9 +42,15 @@ end
 
 local function create_bp_from_string(surface, force)
     -- Create proxy blueprint from string, read in the entities and remove it.
-    local bp = surface.create_entity {name = 'item-on-ground', position = {0, 0}, force = force, stack = 'blueprint'}
+    local bp = surface.create_entity{name = 'item-on-ground', position = {0, 0}, force = force, stack = 'blueprint'}
     bp.stack.import_stack(config.bpstring)
-    local revive = bp.stack.build_blueprint {surface = surface, force = force, position = {0, 2}, force_build = true, skip_fog_of_war = false}
+    local revive = bp.stack.build_blueprint{
+        surface = surface,
+        force = force,
+        position = {0, 2},
+        force_build = true,
+        skip_fog_of_war = false
+    }
     local count = #revive
     for i, ent in ipairs(revive) do
         -- put rolling stock at the end.
@@ -62,11 +68,21 @@ local function create_bp_from_string(surface, force)
     end
     bp.destroy()
     if game.entity_prototypes['debug-energy-interface'] then
-        local es = surface.create_entity {name = 'debug-energy-interface', position = {0, 0}, force = force, raise_built = true}
+        local es = surface.create_entity{
+            name = 'debug-energy-interface',
+            position = {0, 0},
+            force = force,
+            raise_built = true
+        }
         es.destructible = false
     end
     if game.entity_prototypes['debug-substation'] then
-        local sb = surface.create_entity {name = 'debug-substation', position = {0, 0}, force = force, raise_built = true}
+        local sb = surface.create_entity{
+            name = 'debug-substation',
+            position = {0, 0},
+            force = force,
+            raise_built = true
+        }
         sb.destructible = false
     end
 end
@@ -100,20 +116,70 @@ local function create_grid(surface)
     for x = 32, area.right_bottom.x, 32 do
         for y = 32, area.right_bottom.y, 32 do
             -- Horizontal
-            rendering.draw_line {width = 2, color = black, from = {x = x, y = -y}, to = {x = -x, y = -y}, surface = surface, only_in_alt_mode = true}
-            rendering.draw_line {width = 2, color = black, from = {x = x, y = y}, to = {x = -x, y = y}, surface = surface, only_in_alt_mode = true}
+            rendering.draw_line{
+                width = 2,
+                color = black,
+                from = {x = x, y = -y},
+                to = {x = -x, y = -y},
+                surface = surface,
+                only_in_alt_mode = true
+            }
+            rendering.draw_line{
+                width = 2,
+                color = black,
+                from = {x = x, y = y},
+                to = {x = -x, y = y},
+                surface = surface,
+                only_in_alt_mode = true
+            }
             -- Vertical
-            rendering.draw_line {width = 2, color = black, from = {x = -x, y = y}, to = {x = -x, y = -y}, surface = surface, only_in_alt_mode = true}
-            rendering.draw_line {width = 2, color = black, from = {x = x, y = y}, to = {x = x, y = -y}, surface = surface, only_in_alt_mode = true}
+            rendering.draw_line{
+                width = 2,
+                color = black,
+                from = {x = -x, y = y},
+                to = {x = -x, y = -y},
+                surface = surface,
+                only_in_alt_mode = true
+            }
+            rendering.draw_line{
+                width = 2,
+                color = black,
+                from = {x = x, y = y},
+                to = {x = x, y = -y},
+                surface = surface,
+                only_in_alt_mode = true
+            }
         end
     end
     -- Center
-    rendering.draw_line {width = 2, color = black, from = {x = area.right_bottom.x, y = 0}, to = {x = area.left_top.x, y = 0}, surface = surface, only_in_alt_mode = true}
-    rendering.draw_line {width = 2, color = black, from = {x = 0, y = area.right_bottom.y}, to = {x = 0, y = area.left_top.y}, surface = surface, only_in_alt_mode = true}
-    rendering.draw_circle {width = 2, color = black, surface = surface, radius = 1, filled = false, target = {x = 0, y = 0}, only_in_alt_mode = true}
+    rendering.draw_line{
+        width = 2,
+        color = black,
+        from = {x = area.right_bottom.x, y = 0},
+        to = {x = area.left_top.x, y = 0},
+        surface = surface,
+        only_in_alt_mode = true
+    }
+    rendering.draw_line{
+        width = 2,
+        color = black,
+        from = {x = 0, y = area.right_bottom.y},
+        to = {x = 0, y = area.left_top.y},
+        surface = surface,
+        only_in_alt_mode = true
+    }
+    rendering.draw_circle{
+        width = 2,
+        color = black,
+        surface = surface,
+        radius = 1,
+        filled = false,
+        target = {x = 0, y = 0},
+        only_in_alt_mode = true
+    }
 
     for chunk in surface.get_chunks() do
-        rendering.draw_text {
+        rendering.draw_text{
             text = chunk.x .. ', ' .. chunk.y,
             surface = surface,
             target = chunk.area.left_top,
@@ -135,34 +201,34 @@ local function create_grid(surface)
 end
 
 local function create_starting_resources(surface)
-    --Top left
-    for pos in Area {{-37.5, -27.5}, {-32.5, -4.5}}:iterate(true) do
-        surface.create_entity {name = 'coal', position = pos, amount = 2500}
+    -- Top left
+    for pos in Area{{-37.5, -27.5}, {-32.5, -4.5}}:iterate(true) do
+        surface.create_entity{name = 'coal', position = pos, amount = 2500}
     end
-    --Top Right
-    for pos in Area {{32.5, -27.5}, {37.5, -4.5}}:iterate(true) do
-        surface.create_entity {name = 'iron-ore', position = pos, amount = 2500}
+    -- Top Right
+    for pos in Area{{32.5, -27.5}, {37.5, -4.5}}:iterate(true) do
+        surface.create_entity{name = 'iron-ore', position = pos, amount = 2500}
     end
     -- Top Middle left
-    for pos in Area {{-27.5, -37.5}, {-4.5, -32.5}}:iterate(true) do
-        surface.create_entity {name = 'uranium-ore', position = pos, amount = 2500}
+    for pos in Area{{-27.5, -37.5}, {-4.5, -32.5}}:iterate(true) do
+        surface.create_entity{name = 'uranium-ore', position = pos, amount = 2500}
     end
-    --Top middle right
-    for pos in Area {{4.5, -37.5}, {27.5, -32.5}}:iterate(true) do
-        surface.create_entity {name = 'uranium-ore', position = pos, amount = 2500}
+    -- Top middle right
+    for pos in Area{{4.5, -37.5}, {27.5, -32.5}}:iterate(true) do
+        surface.create_entity{name = 'uranium-ore', position = pos, amount = 2500}
     end
-    --Bottom Right
-    for pos in Area {{32.5, 4.5}, {37.5, 27.5}}:iterate(true) do
-        surface.create_entity {name = 'copper-ore', position = pos, amount = 2500}
+    -- Bottom Right
+    for pos in Area{{32.5, 4.5}, {37.5, 27.5}}:iterate(true) do
+        surface.create_entity{name = 'copper-ore', position = pos, amount = 2500}
     end
-    --Bottom Left
-    for pos in Area {{-37.5, 4.5}, {-32.5, 27.5}}:iterate(true) do
-        surface.create_entity {name = 'stone', position = pos, amount = 2500}
+    -- Bottom Left
+    for pos in Area{{-37.5, 4.5}, {-32.5, 27.5}}:iterate(true) do
+        surface.create_entity{name = 'stone', position = pos, amount = 2500}
     end
-    surface.create_entity {name = 'crude-oil', position = {-35.5, 1.5}, amount = 32000}
-    surface.create_entity {name = 'crude-oil', position = {-35.5, -1.5}, amount = 32000}
-    surface.create_entity {name = 'crude-oil', position = {35.5, 1.5}, amount = 32000}
-    surface.create_entity {name = 'crude-oil', position = {35.5, -1.5}, amount = 32000}
+    surface.create_entity{name = 'crude-oil', position = {-35.5, 1.5}, amount = 32000}
+    surface.create_entity{name = 'crude-oil', position = {-35.5, -1.5}, amount = 32000}
+    surface.create_entity{name = 'crude-oil', position = {35.5, 1.5}, amount = 32000}
+    surface.create_entity{name = 'crude-oil', position = {35.5, -1.5}, amount = 32000}
 end
 
 local function chart_area(surface, starting_area, force)
@@ -178,10 +244,7 @@ local function conditional_on_chunk_generated(event)
     if surface == game.surfaces[1] and (chunk_pos == water1 or chunk_pos == water2) then
         local water_tiles = {}
         for pos in Area(event.area):shrink(1):iterate(true, true) do
-            water_tiles[#water_tiles + 1] = {
-                name = 'water',
-                position = pos
-            }
+            water_tiles[#water_tiles + 1] = {name = 'water', position = pos}
         end
         surface.set_tiles(water_tiles, false)
         global.water1_generated = global.water1_generated or chunk_pos == water1
@@ -201,7 +264,7 @@ local function on_init()
 
     map_gen_settings(surface)
 
-    for _, entity in pairs(surface.find_entities_filtered {area = area, type = 'character', invert = true}) do
+    for _, entity in pairs(surface.find_entities_filtered{area = area, type = 'character', invert = true}) do
         entity.destroy()
     end
 
@@ -233,23 +296,19 @@ Event.on_load(on_load)
 
 local function on_player_created(event)
     local player = game.get_player(event.player_index)
+    player.cheat_mode = true
 
     local main_inv = player.get_main_inventory()
     main_inv.clear()
     for name, count in pairs(config.items) do
-        if game.item_prototypes[name] then
-            main_inv.insert({name = name, count = count})
-        end
+        if game.item_prototypes[name] then main_inv.insert({name = name, count = count}) end
     end
 
     if player.character then
-
         local gun_inv = player.get_inventory(defines.inventory.character_guns)
         gun_inv.clear()
         for name, count in pairs(config.weapons) do
-            if game.item_prototypes[name] then
-                gun_inv.insert({name = name, count = count})
-            end
+            if game.item_prototypes[name] then gun_inv.insert({name = name, count = count}) end
         end
 
         if game.item_prototypes['power-armor-mk2'] then
@@ -257,21 +316,13 @@ local function on_player_created(event)
             local grid = player.character.grid
             if grid then
                 for _, eq in pairs(config.equipment) do
-                    if game.equipment_prototypes[eq] then
-                        grid.put {name = eq}
-                    end
+                    if game.equipment_prototypes[eq] then grid.put{name = eq} end
                 end
             end
         end
     end
 end
 Event.on_event(defines.events.on_player_created, on_player_created)
-
-local function on_player_joined_game(event)
-    local player = game.get_player(event.player_index)
-    player.cheat_mode = true
-end
-Event.on_event(defines.events.on_player_joined_game, on_player_joined_game)
 
 local function on_player_cheat_mode_enabled(event)
     local player = game.get_player(event.player_index)
@@ -285,3 +336,9 @@ local function on_player_cheat_mode_enabled(event)
     end
 end
 Event.on_event(defines.events.on_player_cheat_mode_enabled, on_player_cheat_mode_enabled)
+
+local function on_player_promoted(event)
+    local player = game.get_player(event.player_index)
+    player.clear_recipe_notifications()
+end
+Event.on_event(defines.events.on_player_promoted, on_player_promoted)
