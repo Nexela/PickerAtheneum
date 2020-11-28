@@ -20,7 +20,7 @@ Data('electric-energy-interface', 'electric-energy-interface'):copy('debug-energ
     collision_mask = {},
     selection_box = {{0.0, -0.5}, {0.5, 0.5}},
     picture = Data.Sprites.empty_picture()
-}:remove_fields {'minable', 'collision_box', 'vehicle_impact_sound', 'working_sound'}
+}:remove_fields {'minable', 'collision_box', 'vehicle_impact_sound', 'working_sound', 'next_upgrade'}
 
 Data('substation', 'electric-pole'):copy('debug-substation'):set_fields {
     localised_name = 'Debug power substation',
@@ -32,7 +32,7 @@ Data('substation', 'electric-pole'):copy('debug-substation'):set_fields {
     maximum_wire_distance = 64,
     supply_area_distance = 64,
     connection_points = Data.Sprites.empty_connection_points(1)
-}:remove_fields {'minable', 'collision_box', 'vehicle_impact_sound', 'working_sound'}
+}:remove_fields {'minable', 'collision_box', 'vehicle_impact_sound', 'working_sound', 'next_upgrade'}
 
 local gen = data.raw['map-gen-presets']
 gen['default']['debug'] = {
