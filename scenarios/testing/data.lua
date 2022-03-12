@@ -30,7 +30,7 @@ Data('substation', 'electric-pole'):copy('debug-substation'):set_fields{
     collision_mask = {},
     pictures = Data.Sprites.empty_pictures(),
     maximum_wire_distance = 64,
-    supply_area_distance = 64,
+    supply_area_distance = 32,
     connection_points = Data.Sprites.empty_connection_points(1)
 }:remove_fields{'minable', 'collision_box', 'vehicle_impact_sound', 'working_sound', 'next_upgrade'}
 
