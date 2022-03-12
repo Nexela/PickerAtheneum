@@ -58,7 +58,7 @@ local function create_bp_from_string(surface, force)
         surface = surface,
         force = force,
         position = {0, 0},
-        force_build = true,
+        force_build = "super",
         skip_fog_of_war = false
     }
     local count = #revive
