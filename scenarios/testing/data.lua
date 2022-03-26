@@ -1,5 +1,5 @@
 local Data = require('__stdlib__/stdlib/data/data')
-local config = require('scenarios/testing/config')
+local config = require('__PickerAtheneum__/scenarios/testing/config')
 
 local function make_no_controls()
     local controls = {}

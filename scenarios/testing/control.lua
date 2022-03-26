@@ -1,6 +1,7 @@
 local Event = require('__stdlib__/stdlib/event/event').set_protected_mode(true)
 local Area = require('__stdlib__/stdlib/area/area')
 local Position = require('__stdlib__/stdlib/area/position')
+local Color = require('__stdlib__/stdlib/utils/color')
 
 local config = require('__PickerAtheneum__/scenarios/testing/config')
 
@@ -153,7 +154,7 @@ local function render_chunk_grid(surface, chunk_area, chunk_position)
         text = chunk_position.x .. ', ' .. chunk_position.y,
         surface = surface,
         target = left_top,
-        color = defines.color.white,
+        color = Color.color.white,
         scale = 1.25,
         draw_on_ground = true,
         orientation = 0,
