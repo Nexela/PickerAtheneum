@@ -44,7 +44,8 @@ local function queue_tick()
     end
 end
 
---Add a mod to the queue. Initializes the queue system if it isn't running. A mod calls remote.call and provides a table with name and f_name parameters, and it is stored in a global array.
+--Add a mod to the queue. Initializes the queue system if it isn't running.
+--A mod calls remote.call and provides a table with name and f_name parameters, and it is stored in a global array.
 --@tparam name The name of the calling mod
 --@tparam f_name The name of the function assigned to the interface in the remote mod
 Interface['queue_add'] = function(interface, func_name)
@@ -56,7 +57,8 @@ Interface['queue_add'] = function(interface, func_name)
     return true
 end
 
---Remove a mod from the queue. Searches for the relevant mod by the provided name from the remote.call and removes the entry from the queue. Also makes sure index stays within bounds. Also unregisters the on_tick handler if the queue is empty.
+--Remove a mod from the queue. Searches for the relevant mod by the provided name from the remote.call and removes the entry from the queue.
+-- Also makes sure index stays within bounds. Also unregisters the on_tick handler if the queue is empty.
 --@tparam name The name of the calling mod
 Interface['queue_remove'] = function(interface, func_name)
     if global.remote_queue then

@@ -16,12 +16,13 @@ config.items = {
     ['ammo-nano-termites'] = 100
 }
 
-config.weapons = {['gun-nano-emitter'] = 1}
+config.weapons = { ['gun-nano-emitter'] = 1 }
 
 config.equipment = {
     'ee-infinity-fusion-reactor-equipment', 'ee-super-personal-roboport-equipment', 'belt-immunity-equipment'
 }
 
+---@diagnostic disable
 config.bpstring = [[
 0eNqtnU9v20YQxb8Le5UNziz/+tZDgJ4aoEnRQ2EEisQ4RGXJoGinbuDvXspiZFseWvP25WYHmjck9z
 dvZzkK/D35vLptbrp23ScX35N2sVlvk4u/vyfb9mo9X+3+rb+/aZKLpO2b62SWrOfXu9+6ebtKHmZJu
@@ -72,5 +73,6 @@ MAowAdkLegBEgoyDDCn2cGMEXFgTAODbzCfPIYxLtuj+wMYEDYgw
 D+aQzAjAtkfaCIqDliigQtkYQqceMEMdw0wPC+ww3gO8x0YmUEMk
 KovQDEIDyQDMwpCCzgwI2W3D/YMuY/jpgEAnlyRYA==<<<
 ]]
+---@diagnostic enable
 
 return config
