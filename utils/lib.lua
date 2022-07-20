@@ -4,12 +4,13 @@
 local lib = {}
 local Area = require('__stdlib__/stdlib/area/area')
 local Position = require('__stdlib__/stdlib/area/position')
+local Color = require('__stdlib__/stdlib/utils/color')
 
 function lib.get_or_create_main_left_flow(player, flow_name)
     local main_flow = player.gui.left[flow_name .. '_main_flow']
     if not main_flow then
         main_flow =
-            player.gui.left.add {
+        player.gui.left.add {
             type = 'flow',
             name = flow_name .. '_main_flow',
             direction = 'vertical',
@@ -30,20 +31,21 @@ lib.ghosts = {
 
 --Return localised name, entity_prototype, and item_prototype
 function lib.get_placeable_item(entity)
-    local locname, ep
+    local loc_name, ep
     if entity.name == 'entity-ghost' or entity.name == 'tile-ghost' then
-        locname = entity.ghost_localised_name
+        loc_name = entity.ghost_localised_name
         ep = entity.ghost_prototype
     else
-        locname = entity.localised_name
+        loc_name = entity.localised_name
         ep = entity.prototype
     end
-    if ep and ep.mineable_properties and ep.mineable_properties.minable and ep.mineable_properties.products and ep.mineable_properties.products[1].type == 'item' then -- If the entity has mineable products.
+    if ep and ep.mineable_properties and ep.mineable_properties.minable
+        and ep.mineable_properties.products and ep.mineable_properties.products[1].type == 'item'
+    then -- If the entity has mineable products.
         local ip = game.item_prototypes[ep.mineable_properties.products[1].name] -- Retrieve first available item prototype
-        if ip and (ip.place_result or ip.place_as_tile_result) then -- If the entity has an item with a placeable prototype,
-            return (ip.localised_name or locname), ep, ip
-        end
-        return locname, ep
+        -- If the entity has an item with a placeable prototype,
+        if ip and (ip.place_result or ip.place_as_tile_result) then return (ip.localised_name or loc_name), ep, ip end
+        return loc_name, ep
     end
 end
 
@@ -59,7 +61,7 @@ function lib.find_resources(entity)
     if entity.type == 'mining-drill' then
         local area = Position.expand_to_area(entity.position, game.entity_prototypes[entity.name].mining_drill_radius)
         local name = entity.mining_target and entity.mining_target.name or nil
-        return entity.surface.count_entities_filtered {area = area, type = 'resource', name = name}
+        return entity.surface.count_entities_filtered { area = area, type = 'resource', name = name }
     end
     return 0
 end
@@ -87,7 +89,7 @@ end
 function lib.create_buffer_corpse(player, inf)
     return player.surface.create_entity {
         name = 'picker-buffer-corpse-' .. (inf and 'inf' or 'instant'),
-        position = {0, 0},
+        position = { 0, 0 },
         force = player.force,
         inventory_size = 1,
         player_index = player.index
@@ -105,14 +107,14 @@ function lib.insert_or_spill_items(entity, item_stacks)
         if item_stacks[1] and item_stacks[1].name then
             new_stacks = item_stacks
         elseif item_stacks and item_stacks.name then
-            new_stacks = {item_stacks}
+            new_stacks = { item_stacks }
         end
         for _, stack in pairs(new_stacks) do
             local name, count, health = stack.name, stack.count, stack.health or 1
             if game.item_prototypes[name] and not game.item_prototypes[name].has_flag('hidden') and stack.count > 0 then
-                local inserted = entity.insert {name = name, count = count, health = health}
+                local inserted = entity.insert { name = name, count = count, health = health }
                 if inserted ~= count then
-                    entity.surface.spill_item_stack(entity.position, {name = name, count = count - inserted, health = health}, true)
+                    entity.surface.spill_item_stack(entity.position, { name = name, count = count - inserted, health = health }, true)
                 end
             end
         end
@@ -127,7 +129,7 @@ function lib.satisfy_requests(player, proxy)
         entity = proxy.proxy_target
     elseif Area(proxy.selection_box):size() > 0 then
         proxy =
-            proxy.surface.find_entities_filtered {
+        proxy.surface.find_entities_filtered {
             name = 'item-request-proxy',
             area = proxy.selection_box
         }[1]
@@ -135,18 +137,18 @@ function lib.satisfy_requests(player, proxy)
     end
 
     if proxy and entity then
-        local pinv = player.get_main_inventory()
+        local p_inv = player.get_main_inventory()
         local new_requests = {}
         local pos = Position.increment(entity.position, 0, -0.35)
         for name, count in pairs(proxy.item_requests) do
-            local removed = player.cheat_mode and count or (entity and entity.can_insert(name) and pinv.remove({name = name, count = count})) or 0
+            local removed = player.cheat_mode and count or (entity and entity.can_insert(name) and p_inv.remove { name = name, count = count }) or 0
             if removed > 0 then
-                entity.insert({name = name, count = removed})
-                local txt = {'', -removed, ' ', {'item-name.' .. name}, ' (' .. player.get_item_count(name) .. ')'}
+                entity.insert { name = name, count = removed }
+                local txt = { '', -removed, ' ', { 'item-name.' .. name }, ' (' .. player.get_item_count(name) .. ')' }
                 player.create_local_flying_text {
                     text = txt,
                     position = pos(),
-                    color = defines.color.white
+                    color = Color.color.white
                 }
             end
             local balance = count - removed
@@ -225,15 +227,13 @@ function lib.find_item_in_inventory(item_name, inventory, options)
     if found then
         return found
     end
-
 end
 
 function lib.set_or_swap_item(player, slot, item, set)
-    if type(item) == "string" then
+    if type(item) == 'string' then
         return (set and slot.set_stack(item)) or (player.clear_cursor() and slot.set_stack(item))
     end
     return item and ((set and slot.set_stack(item)) or (player.clear_cursor() and slot.swap_stack(item) or slot.set_stack(item)))
 end
-
 
 return lib

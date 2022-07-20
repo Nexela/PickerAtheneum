@@ -52,7 +52,7 @@ Interface['queue_add'] = function(interface, func_name)
         global.remote_queue = Queue()
         Event.register(defines.events.on_tick, queue_tick, nil, nil, options)
     end
-    global.remote_queue {interface = interface, func_name = func_name}
+    global.remote_queue { interface = interface, func_name = func_name }
     return true
 end
 
@@ -81,4 +81,5 @@ local function on_load()
         Event.register(defines.events.on_tick, queue_tick, nil, nil, options)
     end
 end
+
 Event.on_load(on_load)

@@ -7,7 +7,7 @@ require('prototypes/pointer-beam')
 Data {
     type = 'flying-text',
     name = 'picker-flying-text',
-    flags = {'placeable-off-grid', 'not-on-map'},
+    flags = { 'placeable-off-grid', 'not-on-map' },
     time_to_live = 150,
     speed = 0.05
 }
@@ -35,11 +35,11 @@ Data {
 
 Data('blueprint', 'blueprint'):copy('picker-blueprint-tool'):set_fields {
     draw_label_for_cursor_render = true,
-    flags = {'hidden', 'only-in-cursor'},
+    flags = { 'hidden', 'only-in-cursor' },
     order = 'c[automated-construction]-a[blueprint]-no-picker'
 }
 
 Data('deconstruction-planner', 'deconstruction-item'):copy('picker-deconstruction-tool'):set_fields {
-    flags = {'hidden', 'only-in-cursor'},
+    flags = { 'hidden', 'only-in-cursor' },
     order = 'c[automated-construction]-a[construction]-no-picker'
 }

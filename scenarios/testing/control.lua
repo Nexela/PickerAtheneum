@@ -1,23 +1,23 @@
-local Event = require('__stdlib__/stdlib/event/event').set_protected_mode(true)
-local Area = require('__stdlib__/stdlib/area/area')
-local Position = require('__stdlib__/stdlib/area/position')
-local Color = require('__stdlib__/stdlib/utils/color')
+local Event = require("__stdlib__/stdlib/event/event").set_protected_mode(true)
+local Area = require("__stdlib__/stdlib/area/area")
+local Position = require("__stdlib__/stdlib/area/position")
+local Color = require("__stdlib__/stdlib/utils/color")
 
-local config = require('__PickerAtheneum__/scenarios/testing/config')
+local config = require("__PickerAtheneum__/scenarios/testing/config")
 
-local map_area = Area():adjust({config.width / 2, config.height / 2})
+local map_area = Area():adjust { config.width / 2, config.height / 2 }
 local center_chunk_position = Position()
 local initial_area = Area()
 local initial_chunks = Area()
-local water_chunks = {Position(-1, 2), Position(0, 2)}
+local water_chunks = { Position(-1, 2), Position(0, 2) }
 
 local rolling_stock = {
-    ['locomotive'] = true,
-    ['cargo-wagon'] = true,
-    ['artillery-wagon'] = true,
-    ['fluid-wagon'] = true
+    ["locomotive"] = true,
+    ["cargo-wagon"] = true,
+    ["artillery-wagon"] = true,
+    ["fluid-wagon"] = true
 }
-local color = {r = 1, g = 1, b = 1}
+local color = { r = 1, g = 1, b = 1 }
 
 
 local function set_map_gen_settings(surface)
@@ -28,7 +28,7 @@ local function set_map_gen_settings(surface)
     -- starting_area :: MapGenSize: Size of the starting area.
     -- peaceful_mode :: boolean: Whether peaceful mode is enabled for this map.
 
-    initial_area = initial_area:adjust({mgs.width / 2, mgs.height / 2})
+    initial_area = initial_area:adjust { mgs.width / 2, mgs.height / 2 }
     initial_chunks = initial_area:to_chunk_coords():expand(1)
 
     global.initial_chunk_count = #initial_chunks:positions()
@@ -53,12 +53,12 @@ end
 
 local function create_bp_from_string(surface, force)
     -- Create proxy blueprint from string, read in the entities and remove it.
-    local bp = surface.create_entity{name = 'item-on-ground', position = {0, 0}, force = force, stack = 'blueprint'}
+    local bp = surface.create_entity { name = "item-on-ground", position = { 0, 0 }, force = force, stack = "blueprint" }
     bp.stack.import_stack(config.bpstring)
-    local revive = bp.stack.build_blueprint{
+    local revive = bp.stack.build_blueprint {
         surface = surface,
         force = force,
-        position = {0, 0},
+        position = { 0, 0 },
         force_build = true,
         skip_fog_of_war = false
     }
@@ -68,10 +68,10 @@ local function create_bp_from_string(surface, force)
         if i < count and rolling_stock[ent.ghost_type] then
             revive[#revive + 1] = ent
         else
-            if ent.ghost_type == 'locomotive' then
+            if ent.ghost_type == "locomotive" then
                 local _, loco = ent.revive()
                 if loco then
-                    loco.burner.currently_burning = 'rocket-fuel'
+                    loco.burner.currently_burning = "rocket-fuel"
                     loco.burner.remaining_burning_fuel = 222222222
                 end
             else
@@ -81,19 +81,19 @@ local function create_bp_from_string(surface, force)
     end
     bp.destroy()
 
-    if game.entity_prototypes['debug-energy-interface'] then
-        local es = surface.create_entity{
-            name = 'debug-energy-interface',
-            position = {0, 0},
+    if game.entity_prototypes["debug-energy-interface"] then
+        local es = surface.create_entity {
+            name = "debug-energy-interface",
+            position = { 0, 0 },
             force = force,
             raise_built = true
         }
         es.destructible = false
     end
-    if game.entity_prototypes['debug-substation'] then
-        local sb = surface.create_entity{
-            name = 'debug-substation',
-            position = {0, 0},
+    if game.entity_prototypes["debug-substation"] then
+        local sb = surface.create_entity {
+            name = "debug-substation",
+            position = { 0, 0 },
             force = force,
             raise_built = true
         }
@@ -103,21 +103,21 @@ end
 
 local function generate_lab_tile_grid(surface, chunk_area)
     local tiles = {}
-    local floor_tile = 'lab-dark-1'
-    local floor_tile_alt = 'lab-dark-2'
+    local floor_tile = "lab-dark-1"
+    local floor_tile_alt = "lab-dark-2"
     for x = chunk_area.left_top.x, chunk_area.right_bottom.x - 1 do
         for y = chunk_area.left_top.y, chunk_area.right_bottom.y - 1 do
             if y % 2 == 0 then
                 if x % 2 == 0 then
-                    tiles[#tiles + 1] = {name = floor_tile, position = {x = x, y = y}}
+                    tiles[#tiles + 1] = { name = floor_tile, position = { x = x, y = y } }
                 else
-                    tiles[#tiles + 1] = {name = floor_tile_alt, position = {x = x, y = y}}
+                    tiles[#tiles + 1] = { name = floor_tile_alt, position = { x = x, y = y } }
                 end
             else
                 if x % 2 ~= 0 then
-                    tiles[#tiles + 1] = {name = floor_tile, position = {x = x, y = y}}
+                    tiles[#tiles + 1] = { name = floor_tile, position = { x = x, y = y } }
                 else
-                    tiles[#tiles + 1] = {name = floor_tile_alt, position = {x = x, y = y}}
+                    tiles[#tiles + 1] = { name = floor_tile_alt, position = { x = x, y = y } }
                 end
             end
         end
@@ -126,13 +126,13 @@ local function generate_lab_tile_grid(surface, chunk_area)
 end
 
 local function render_center_point(surface)
-    rendering.draw_circle{
-        width = 2,
+    rendering.draw_circle {
+        width = 2.0,
         color = color,
         surface = surface,
         radius = 1,
         filled = false,
-        target = {x = 0, y = 0},
+        target = { x = 0, y = 0 },
         only_in_alt_mode = true
     }
 end
@@ -141,23 +141,23 @@ local function render_chunk_grid(surface, chunk_area, chunk_position)
     local left_top = chunk_area.left_top
     local right_bottom = chunk_area.right_bottom
 
-    local function render_chunk_boundries(from, to)
-        rendering.draw_line{width = 2, color = color, from = from, to = to, surface = surface, only_in_alt_mode = true}
+    local function render_chunk_boundaries(from, to)
+        rendering.draw_line { width = 2.0, color = color, from = from, to = to, surface = surface, only_in_alt_mode = true }
     end
 
-    render_chunk_boundries({left_top.x, left_top.y}, {right_bottom.x, left_top.y})
-    render_chunk_boundries({left_top.x, right_bottom.y}, {right_bottom.x, right_bottom.y})
-    render_chunk_boundries({left_top.x, left_top.y}, {left_top.x, right_bottom.y})
-    render_chunk_boundries({right_bottom.x, left_top.y}, {right_bottom.x, right_bottom.y})
+    render_chunk_boundaries({ left_top.x, left_top.y }, { right_bottom.x, left_top.y })
+    render_chunk_boundaries({ left_top.x, right_bottom.y }, { right_bottom.x, right_bottom.y })
+    render_chunk_boundaries({ left_top.x, left_top.y }, { left_top.x, right_bottom.y })
+    render_chunk_boundaries({ right_bottom.x, left_top.y }, { right_bottom.x, right_bottom.y })
 
-    rendering.draw_text{
-        text = chunk_position.x .. ', ' .. chunk_position.y,
+    rendering.draw_text {
+        text = chunk_position.x .. ", " .. chunk_position.y,
         surface = surface,
         target = left_top,
         color = Color.color.white,
         scale = 1.25,
         draw_on_ground = true,
-        orientation = 0,
+        orientation = 0.0,
         scale_with_zoom = true,
         only_in_alt_mode = true
         -- target_offset=,
@@ -172,33 +172,33 @@ end
 
 local function generate_starting_resources(surface)
     -- Top left
-    for pos in Area{{-37.5, -27.5}, {-32.5, -4.5}}:iterate(true) do
-        surface.create_entity{name = 'coal', position = pos, amount = 2500}
+    for pos in Area { { -37.5, -27.5 }, { -32.5, -4.5 } }:iterate(true) do
+        surface.create_entity { name = "coal", position = pos, amount = 2500 }
     end
     -- Top Right
-    for pos in Area{{32.5, -27.5}, {37.5, -4.5}}:iterate(true) do
-        surface.create_entity{name = 'iron-ore', position = pos, amount = 2500}
+    for pos in Area { { 32.5, -27.5 }, { 37.5, -4.5 } }:iterate(true) do
+        surface.create_entity { name = "iron-ore", position = pos, amount = 2500 }
     end
     -- Top Middle left
-    for pos in Area{{-27.5, -37.5}, {-4.5, -32.5}}:iterate(true) do
-        surface.create_entity{name = 'uranium-ore', position = pos, amount = 2500}
+    for pos in Area { { -27.5, -37.5 }, { -4.5, -32.5 } }:iterate(true) do
+        surface.create_entity { name = "uranium-ore", position = pos, amount = 2500 }
     end
     -- Top middle right
-    for pos in Area{{4.5, -37.5}, {27.5, -32.5}}:iterate(true) do
-        surface.create_entity{name = 'uranium-ore', position = pos, amount = 2500}
+    for pos in Area { { 4.5, -37.5 }, { 27.5, -32.5 } }:iterate(true) do
+        surface.create_entity { name = "uranium-ore", position = pos, amount = 2500 }
     end
     -- Bottom Right
-    for pos in Area{{32.5, 4.5}, {37.5, 27.5}}:iterate(true) do
-        surface.create_entity{name = 'copper-ore', position = pos, amount = 2500}
+    for pos in Area { { 32.5, 4.5 }, { 37.5, 27.5 } }:iterate(true) do
+        surface.create_entity { name = "copper-ore", position = pos, amount = 2500 }
     end
     -- Bottom Left
-    for pos in Area{{-37.5, 4.5}, {-32.5, 27.5}}:iterate(true) do
-        surface.create_entity{name = 'stone', position = pos, amount = 2500}
+    for pos in Area { { -37.5, 4.5 }, { -32.5, 27.5 } }:iterate(true) do
+        surface.create_entity { name = "stone", position = pos, amount = 2500 }
     end
-    surface.create_entity{name = 'crude-oil', position = {-35.5, 1.5}, amount = 32000}
-    surface.create_entity{name = 'crude-oil', position = {-35.5, -1.5}, amount = 32000}
-    surface.create_entity{name = 'crude-oil', position = {35.5, 1.5}, amount = 32000}
-    surface.create_entity{name = 'crude-oil', position = {35.5, -1.5}, amount = 32000}
+    surface.create_entity { name = "crude-oil", position = { -35.5, 1.5 }, amount = 32000 }
+    surface.create_entity { name = "crude-oil", position = { -35.5, -1.5 }, amount = 32000 }
+    surface.create_entity { name = "crude-oil", position = { 35.5, 1.5 }, amount = 32000 }
+    surface.create_entity { name = "crude-oil", position = { 35.5, -1.5 }, amount = 32000 }
 end
 
 local function chart_area(surface, force)
@@ -211,14 +211,14 @@ end
 local function generate_water(surface, chunk_area)
     local water_tiles = {}
     for pos in chunk_area:shrink(1):iterate(true, true) do
-        water_tiles[#water_tiles + 1] = {name = 'water', position = pos}
+        water_tiles[#water_tiles + 1] = { name = "water", position = pos }
     end
     surface.set_tiles(water_tiles, false)
 end
 
 local function on_init()
-    local force = game.forces['player']
-    local surface = game.surfaces['nauvis']
+    local force = game.forces["player"]
+    local surface = game.surfaces["nauvis"]
 
     set_map_gen_settings(surface)
 
@@ -227,6 +227,7 @@ local function on_init()
 
     chart_area(surface, force)
 end
+
 Event.on_init(on_init)
 
 local function on_chunk_generated(event)
@@ -235,7 +236,7 @@ local function on_chunk_generated(event)
     local chunk_position = Position.load(event.position)
 
     surface.destroy_decoratives(chunk_area)
-    for _, entity in pairs(surface.find_entities_filtered{area = chunk_area, type = 'character', invert = true}) do
+    for _, entity in pairs(surface.find_entities_filtered { area = chunk_area, type = "character", invert = true }) do
         entity.destroy()
     end
 
@@ -256,7 +257,7 @@ local function on_chunk_generated(event)
     -- Generate resources
     if global.initial_chunk_count == 0 and not global.resources_generated then
         generate_starting_resources(surface)
-        create_bp_from_string(surface, game.forces['player'])
+        create_bp_from_string(surface, game.forces["player"])
         global.resources_generated = true
     end
 
@@ -264,6 +265,7 @@ local function on_chunk_generated(event)
     if chunk_position == center_chunk_position then render_center_point(surface) end
     render_chunk_grid(surface, chunk_area, chunk_position)
 end
+
 Event.on_event(defines.events.on_chunk_generated, on_chunk_generated)
 
 local function on_player_created(event)
@@ -273,27 +275,28 @@ local function on_player_created(event)
     local main_inv = player.get_main_inventory()
     main_inv.clear()
     for name, count in pairs(config.items) do
-        if game.item_prototypes[name] then main_inv.insert({name = name, count = count}) end
+        if game.item_prototypes[name] then main_inv.insert { name = name, count = count } end
     end
 
     if player.character then
         local gun_inv = player.get_inventory(defines.inventory.character_guns)
         gun_inv.clear()
         for name, count in pairs(config.weapons) do
-            if game.item_prototypes[name] then gun_inv.insert({name = name, count = count}) end
+            if game.item_prototypes[name] then gun_inv.insert { name = name, count = count } end
         end
 
-        if game.item_prototypes['power-armor-mk2'] then
-            player.get_inventory(defines.inventory.character_armor).insert('power-armor-mk2')
+        if game.item_prototypes["power-armor-mk2"] then
+            player.get_inventory(defines.inventory.character_armor).insert("power-armor-mk2")
             local grid = player.character.grid
             if grid then
                 for _, eq in pairs(config.equipment) do
-                    if game.equipment_prototypes[eq] then grid.put{name = eq} end
+                    if game.equipment_prototypes[eq] then grid.put { name = eq } end
                 end
             end
         end
     end
 end
+
 Event.on_event(defines.events.on_player_created, on_player_created)
 
 local function on_player_cheat_mode_enabled(event)
@@ -307,10 +310,12 @@ local function on_player_cheat_mode_enabled(event)
         player.character_build_distance_bonus = 200
     end
 end
+
 Event.on_event(defines.events.on_player_cheat_mode_enabled, on_player_cheat_mode_enabled)
 
 local function on_player_promoted(event)
     local player = game.get_player(event.player_index)
     player.clear_recipe_notifications()
 end
+
 Event.on_event(defines.events.on_player_promoted, on_player_promoted)

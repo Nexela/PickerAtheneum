@@ -6,43 +6,44 @@ local Event = require('__stdlib__/stdlib/event/event')
 local Gui = require('__stdlib__/stdlib/event/gui')
 local lib = require('__PickerAtheneum__/utils/lib')
 
-function Pad.register_events(pad_name, func, events)
-    Gui.on_click(pad_name .. '_btn_reset', func)
+function Pad.register_events(pad_name, fun, events)
+    Gui.on_click(pad_name .. '_btn_reset', fun)
     Gui.on_confirmed(
         pad_name .. '_text_box',
         function(event)
             event.change = true
-            func(event)
+            fun(event)
         end
     )
     Gui.on_click(
         pad_name .. '_btn_up',
         function(event)
             event.change = 1
-            func(event)
+            fun(event)
         end
     )
     Gui.on_click(
         pad_name .. '_btn_dn',
         function(event)
             event.change = -1
-            func(event)
+            fun(event)
         end
     )
 
     local function keybind_event(event)
         if event.input_name == 'adjustment-pad-increase' then
             event.change = 1
-            func(event)
+            fun(event)
         elseif event.input_name == 'adjustment-pad-decrease' then
             event.change = -1
-            func(event)
+            fun(event)
         end
     end
-    Event.on_event({'adjustment-pad-increase', 'adjustment-pad-decrease'}, keybind_event)
+
+    Event.on_event({ 'adjustment-pad-increase', 'adjustment-pad-decrease' }, keybind_event)
 
     for _, event in pairs(events or {}) do
-        Event.register(event, func)
+        Event.register(event, fun)
     end
 end
 
@@ -59,14 +60,14 @@ function Pad.get_or_create_adjustment_pad(player, pad_name, flow_name) -- return
     local gui = main_flow[pad_name .. '_frame_main']
     if not gui then
         gui =
-            main_flow.add {
+        main_flow.add {
             type = 'frame',
             name = pad_name .. '_frame_main',
             direction = 'horizontal',
             style = 'adjustment_pad_frame_style'
         }
         local flow =
-            gui.add {
+        gui.add {
             type = 'flow',
             name = pad_name .. '_flow',
             direction = 'horizontal',
@@ -75,8 +76,8 @@ function Pad.get_or_create_adjustment_pad(player, pad_name, flow_name) -- return
         flow.add {
             type = 'label',
             name = pad_name .. '_label',
-            caption = {pad_name .. '-gui.label-caption'},
-            tooltip = {pad_name .. '-tooltip.label-caption'},
+            caption = { pad_name .. '-gui.label-caption' },
+            tooltip = { pad_name .. '-tooltip.label-caption' },
             style = 'heading_2_label'
         }
         flow.add {
@@ -90,7 +91,7 @@ function Pad.get_or_create_adjustment_pad(player, pad_name, flow_name) -- return
         }
         --Up/Down buttons
         local button_flow =
-            flow.add {
+        flow.add {
             type = 'flow',
             name = pad_name .. '_button_flow',
             direction = 'vertical',
@@ -116,7 +117,7 @@ function Pad.get_or_create_adjustment_pad(player, pad_name, flow_name) -- return
         flow.add {
             type = 'sprite-button',
             name = pad_name .. '_btn_reset',
-            tooltip = {pad_name .. '-tooltip.label-reset'},
+            tooltip = { pad_name .. '-tooltip.label-reset' },
             style = 'adjustment_pad_btn_reset_style',
             sprite = 'utility/reset'
         }

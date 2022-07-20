@@ -42,7 +42,7 @@ function Interface.event_queue_add(string_id, data, options)
     end
     local id = Event.get_event_name(string_id)
     if id then
-        global.event_queue[string_id]={event_name = string_id, name = id, data = data, options = options}
+        global.event_queue[string_id] = { event_name = string_id, name = id, data = data, options = options }
         global.current_event_index = nil
         return true
     end
@@ -65,4 +65,5 @@ local function on_load()
         Event.register(defines.events.on_tick, queue_tick, nil, nil, tick_options)
     end
 end
+
 Event.on_load(on_load)

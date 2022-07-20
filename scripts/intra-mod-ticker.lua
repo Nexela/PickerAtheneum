@@ -39,6 +39,7 @@ local function on_load()
         Event.on_event(defines.events.on_tick, on_tick, nil, nil, tick_options)
     end
 end
+
 Event.on_load(on_load)
 
 return push_tick

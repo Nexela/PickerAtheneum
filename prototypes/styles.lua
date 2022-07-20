@@ -98,13 +98,13 @@ style.row_table_style = {
     odd_row_graphical_set = {
         type = 'composition',
         filename = '__core__/graphics/gui.png',
-        corner_size = {3, 3},
-        position = {8, 0}
+        corner_size = { 3, 3 },
+        position = { 8, 0 }
     },
     even_row_graphical_set = {
         type = 'composition',
         filename = '__core__/graphics/gui.png',
-        corner_size = {3, 3},
-        position = {8, 0}
+        corner_size = { 3, 3 },
+        position = { 8, 0 }
     }
 }
